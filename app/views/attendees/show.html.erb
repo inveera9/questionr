@@ -1,0 +1,27 @@
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<div class="well bs-component col-lg-6">
+  <p>
+    <strong>User:</strong>
+    <%= @attendee.user_name %>
+  </p>
+
+  <p>
+    <strong>Event day:</strong>
+    <%= @attendee.event_day_name %>
+  </p>
+
+  <p>
+    <strong>Notes:</strong>
+    <%= @attendee.notes %>
+  </p>
+
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_attendee_path(@attendee) %></li>
+  </ul>
+</div>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rwu_id: 1
+  title: MyString
+  description: MyString
+  venue_id: 1
+  public: false
+
+two:
+  rwu_id: 1
+  title: MyString
+  description: MyString
+  venue_id: 1
+  public: false

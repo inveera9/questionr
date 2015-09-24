@@ -1,0 +1,71 @@
+<%= form_for(@person, html: { class: "form-horizontal" }) do |f| %>
+  <% if @person.errors.any? %>
+		<div class="alert alert-dismissible alert-danger col-lg-12">
+	  	<button type="button" class="close" data-dismiss="alert">×</button>
+      <ul>
+      <% @person.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="well bs-component col-lg-6">
+	  <fieldset>
+	    <legend>Person</legend>
+	    <div class="form-group">
+        <label class="col-lg-3 control-label">Sync ID</label>
+        <div class="col-lg-8">
+          <%= f.number_field :rwu_id, class: "form-control", disabled: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :first_name, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :nickname, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :nickname, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :middle_name, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :middle_name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :last_name, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :suffix, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :suffix, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :image_url, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :image_url, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :title, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+      </div>
+	    <div class="form-group">
+	      <div class="col-lg-8 col-lg-offset-3">
+	  	  	<%= link_to 'Cancel', people_path, class: "btn btn-default" %>
+		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
+		    </div>
+			</div>
+    </fieldset>
+  </div>
+<% end %>

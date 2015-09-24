@@ -1,0 +1,60 @@
+<%= form_for(@election, html: { class: "form-horizontal" }) do |f| %>
+  <% if @election.errors.any? %>
+		<div class="alert alert-dismissible alert-danger col-lg-12">
+	  	<button type="button" class="close" data-dismiss="alert">×</button>
+      <ul>
+      <% @election.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="well bs-component col-lg-6">
+	  <fieldset>
+	    <legend>Election</legend>
+	    <div class="form-group">
+        <label class="col-lg-3 control-label">Sync ID</label>
+        <div class="col-lg-8">
+          <%= f.number_field :rwu_id, class: "form-control", disabled: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :state, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :state, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Office Type ID</label>
+        <div class="col-lg-8">
+          <%= f.text_field :office_type_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :special, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8 checkbox-left">
+          <%= f.check_box :special, class: "checkbox form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Election Year</label>
+        <div class="col-lg-8">
+          <%= f.number_field :election_year, class: "form-control" %>
+        </div>
+      </div>
+	    <div class="form-group">
+	      <div class="col-lg-8 col-lg-offset-3">
+	  	  	<%= link_to 'Cancel', elections_path, class: "btn btn-default" %>
+		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
+		    </div>
+			</div>
+    </fieldset>
+  </div>
+<% end %>

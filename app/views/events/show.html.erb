@@ -1,0 +1,88 @@
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<div class="row well bs-component col-lg-12">
+  <div class="col-lg-8">
+    <h1><%= @event.title %></h1>
+    <h3><%= @event.format_location %></h3>
+    <ul class="col-lg-8 list-group">
+    <% @event.event_days.each do |event_day| %>  
+      <li class="list-group-item">
+        <%= event_day.name %> 
+        <span class="pull-right">
+        <% if @current_user.attending?(event_day) %>
+          I'm Going!
+        <% else %>
+          <button type="button" class="set-event-day-id btn btn-xs btn-primary" data-id="<%= event_day.id %>" data-toggle="modal" data-target="#attend_modal">
+            Sign me up!
+          </button>
+        <% end %>
+        </span>
+      </li>
+    <% end %>
+    </ul>
+    <h4 class="col-lg-8"><%= @event.official_url ? link_to('Event web site', @event.official_url) : '' %></h4>                
+    <h4 class="col-lg-8">Event Details</h4>
+    <h5 class="col-lg-8"><%= raw(sanitize(@event.description, tags: SUPPORTED_HTML_TAGS)) %></h5>
+    <h5 class="col-lg-8"><em>Note: Event details are subject to change. New information 
+      may not be reflected here. Please check the original event website or 
+      contact the organizers for updates.</em></h5>
+    <% if @event.rwu_id %>
+      <h6 class="col-lg-8"><em>Event information thanks to AFSC</em></h6>
+    <% end %>
+  </div>
+  <div class="col-lg-4 panel panel-default">
+    <h3>Appearances By</h3>
+    <h4><%= @event.format_people %></h4>
+  </div>
+</div>
+<% if @current_user.admin? %>
+  <div class="well bs-component col-lg-12">
+    <div class="col-lg-4">
+      <%= render 'container', type: Candidate, 
+                              :symbol => :candidates, 
+                              title: 'Candidates', 
+                              :method => :person_name, 
+                              parent: @event, 
+                              children: @event.candidates,
+                              read_only: false %>
+    </div>
+    <div class="col-lg-4">                        
+      <%= render 'container', type: Person, 
+                              :symbol => :people, 
+                              title: 'Speakers', 
+                              :method => :full_name, 
+                              parent: @event, 
+                              children: @event.people,
+                              read_only: false %>
+    </div>
+    <div class="col-lg-4">                        
+      <%= render 'container', type: Attendee, 
+                              :symbol => :attendees, 
+                              title: 'Attendees', 
+                              :method => :user_name, 
+                              parent: @event, 
+                              children: @event.attendees,
+                              read_only: true %>
+    </div>
+    <ul class="pager col-lg-12">
+    	<% if @current_user.admin? %><li class="next"><%= link_to 'Edit →', edit_event_path(@event) %></li><% end %>
+    </ul>
+  </div>
+<% end %>
+<% if @videos.size > 0 %>
+  <div class="col-lg-12">
+    <h1 class="col-lg-12">Answers from this Event</h1>
+    <%= render 'statements/videos' %>
+  </div>    
+<% end %>                
+<%= render 'modal', modal_id: "attend_modal", modal_title: "Sign Up" %>
+<script>
+  $(document).on("click", ".set-event-day-id", function () {
+    $("#event_day_id").val( $(this).data('id') );
+  });
+</script>

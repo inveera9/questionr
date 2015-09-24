@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rwu_id: 1
+  person_id: 1
+  office_id: MyString
+  position: MyString
+  district: MyString
+
+two:
+  rwu_id: 1
+  person_id: 1
+  office_id: MyString
+  position: MyString
+  district: MyString

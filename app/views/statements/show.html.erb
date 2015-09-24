@@ -1,0 +1,62 @@
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<div class="well bs-component col-lg-6">
+  <p>
+    <strong>Sync ID:</strong>
+    <%= @statement.rwu_id %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= @statement.title %>
+  </p>
+
+  <p>
+    <strong>Campaign:</strong>
+    <%= @statement.campaign_name %>
+  </p>
+
+  <p>
+    <strong>Candidate:</strong>
+    <%= @statement.candidate_name %>
+  </p>
+
+  <p>
+    <strong>Event:</strong>
+    <%= @statement.event_name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= raw(sanitize(@statement.description, tags: SUPPORTED_HTML_TAGS)) %>
+  </p>
+
+  <p>
+    <strong>Submitting User:</strong>
+    <%= @statement.user_name %>
+  </p>
+
+  <p>
+    <strong>YouTube URL:</strong>
+    <%= @statement.youtube_url %>
+  </p>
+
+  <p>
+    <strong>Third Party URL:</strong>
+    <%= @statement.third_party_url %>
+  </p>
+
+  <p>
+    <strong>Approved:</strong>
+    <%= @statement.approved %>
+  </p>
+    
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_statement_path(@statement) %></li>
+  </ul>
+</div>

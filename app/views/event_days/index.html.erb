@@ -1,0 +1,39 @@
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<div class="page-header">
+	<h2>Event Days</h2>
+</div>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Date</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event_days.each do |event_day| %>
+      <tr>
+        <td><%= event_day.event_name %></td>
+        <td><%= event_day.date ? event_day.date.strftime('%m/%d/%Y') : ''%></td>
+        <td><%= AMERICA_NEW_YORK_TIME_ZONE.format_time(event_day.start_time, false) %></td>
+        <td><%= AMERICA_NEW_YORK_TIME_ZONE.format_time(event_day.end_time, false) %></td>
+        <td><%= link_to 'Show', event_day, class: 'btn btn-sm btn-info' %></td>
+        <td><%= link_to 'Edit', edit_event_day_path(event_day), class: 'btn btn-sm btn-warning' %></td>
+        <td><%= link_to 'Destroy', event_day, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event Day', new_event_day_path, class: "btn btn-primary" %>

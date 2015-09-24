@@ -1,0 +1,15 @@
+  <div class="col-lg-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= party %></h3>
+      </div>      
+      <div class="panel-body">
+        <ul class="list-group">
+          <li style="border: 0" class="list-group-item"><strong>Declared</strong></li>
+          <%= render 'candidates', candidates: candidates.declared %>
+          <li style="border: 0" class="list-group-item"><strong>Undeclared</strong></li>
+          <%= render 'candidates', candidates: candidates.undeclared %>
+        </ul>
+      </div>
+    </div>
+  </div>

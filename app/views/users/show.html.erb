@@ -1,0 +1,92 @@
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<div class="well bs-component col-lg-6">
+  <p>
+    <strong>First Name:</strong>
+    <%= @user.first_name %>
+  </p>
+
+  <p>
+    <strong>Last Name:</strong>
+    <%= @user.last_name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <strong>Mobile Phone:</strong>
+    <%= @user.mobile_phone %>
+  </p>
+
+  <p>
+    <strong>Location:</strong>
+    <%= @user.location %>
+  </p>
+
+  <p>
+    <strong>Postal Code:</strong>
+    <%= @user.postal_code %>
+  </p>
+
+  <p>
+    <strong>Facebook UID:</strong>
+    <%= @user.fb_uid %>
+  </p>
+
+  <p>
+    <strong>Admin:</strong>
+    <%= @user.admin %>
+  </p>
+
+  <p>
+    <strong>Latitude:</strong>
+    <%= @user.latitude %>
+  </p>
+
+  <p>
+    <strong>Longitude:</strong>
+    <%= @user.longitude %>
+  </p>
+
+  <p>
+    <strong>User Name:</strong>
+    <%= @user.name %>
+  </p>
+
+  <p>
+    <strong>Provider:</strong>
+    <%= @user.provider %>
+  </p>
+
+  <p>
+    <strong>Gender:</strong>
+    <%= @user.gender %>
+  </p>
+
+  <p>
+    <strong>UTC Offset:</strong>
+    <%= @user.utc_offset %>
+  </p>
+
+  <p>
+    <strong>Profile URL:</strong>
+    <%= @user.url %>
+  </p>
+    
+  <p>
+    <strong>Photo URL:</strong>
+    <%= @user.photo %>
+  </p>
+
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_user_path(@user) %></li>
+  </ul>
+</div>

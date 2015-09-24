@@ -1,0 +1,18 @@
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<div class="page-header">
+  <h2>Candidates</h2>
+</div>
+
+<div class="row col-lg-12">
+  <%= render 'party', party: 'Democrats', candidates: Candidate.democrats %>
+  <%= render 'party', party: 'Republicans', candidates: Candidate.republicans %>
+  <%= render 'party', party: 'Third Party & Independents', candidates: Candidate.others %>
+</div>
+
+<% if @current_user.admin? %><%= link_to 'New Candidate', new_candidate_path, class: "btn btn-primary" %><% end %>

@@ -1,0 +1,95 @@
+<%= form_for(@candidate, html: { class: "form-horizontal" }) do |f| %>
+  <% if @candidate.errors.any? %>
+		<div class="alert alert-dismissible alert-danger col-lg-12">
+	  	<button type="button" class="close" data-dismiss="alert">×</button>
+      <ul>
+      <% @candidate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="well bs-component col-lg-6">
+	  <fieldset>
+	    <legend>Candidate</legend>
+	    <div class="form-group">
+        <label class="col-lg-3 control-label">Sync ID</label>
+        <div class="col-lg-8">
+          <%= f.number_field :rwu_id, class: "form-control", disabled: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :person_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+    		<%= f.select :person_id, 
+    				content_tag(:option, '-- No Person --', 
+    										:value => nil) + options_from_collection_for_select(Person.all, 
+    																																			:id, 
+    																																			:full_name, 
+    																																			@candidate.person_id),
+    																																			{}, { class: "form-control" } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">Office ID</label>
+        <div class="col-lg-8">
+          <%= f.text_field :office_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :position, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :position, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :district, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+        <%= f.text_field :district, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :party, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+    		<%= f.select :party, 
+    				content_tag(:option, '-- No Party --', 
+    										:value => nil) + options_for_select({
+                          'Democrat' => 'Democrat',
+                          'Republican' => 'Republican',
+                          'Green' => 'Green',
+                          'Independent' => 'Independent' }, @candidate.party),
+    											{}, { class: "form-control" } %>
+        </div>
+      </div>  
+      <div class="form-group">
+        <%= f.label :status, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+    		<%= f.select :status, 
+    				content_tag(:option, '-- No Status --', 
+    										:value => nil) + options_for_select({
+                          'Undeclared' => 'Undeclared',
+                          'Announced' => 'Announced',
+                          'Declared' => 'Declared',
+                          'Dropped Out' => 'Dropped Out',
+                          'Lost' => 'Lost',
+                          'Won' => 'Won'}, @candidate.status),
+                          {}, { class: "form-control" } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <em>Supported HTML tags: <%= SUPPORTED_HTML_TAGS.join(' ') %></em>
+        <%= f.text_area :description, class: "form-control", rows: 10 %>
+        </div>
+      </div>
+	    <div class="form-group">
+	      <div class="col-lg-8 col-lg-offset-3">
+	  	  	<%= link_to 'Cancel', candidates_path, class: "btn btn-default" %>
+		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
+		    </div>
+			</div>
+    </fieldset>
+  </div>
+<% end %>

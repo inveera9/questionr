@@ -1,0 +1,22 @@
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<div class="page-header">
+	<h2>Events</h2>
+</div>
+
+<%= render 'table', events: Event.upcoming %>
+
+<% if @current_user.admin? %>
+  <div class="page-header">
+  	<h2>Past Events</h2>
+  </div>
+
+  <%= render 'table', events: Event.past %>
+<% end %>
+
+<% if @current_user.admin? %><%= link_to 'New Event', new_event_path, class: "btn btn-primary" %><% end %>

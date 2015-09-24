@@ -1,0 +1,32 @@
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<div class="well bs-component col-lg-6">
+  <p>
+    <strong>Sync ID:</strong>
+    <%= @campaign.rwu_id %>
+  </p>
+
+  <p>
+    <strong>Candidate:</strong>
+    <%= @campaign.candidate_name %>
+  </p>
+
+  <p>
+    <strong>Election:</strong>
+    <%= @campaign.election_name %>
+  </p>
+
+  <p>
+    <strong>Official URL:</strong>
+    <%= @campaign.official_url %>
+  </p>
+  
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_campaign_path(@campaign) %></li>
+  </ul>
+</div>

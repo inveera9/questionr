@@ -1,0 +1,36 @@
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<div class="well bs-component col-lg-6">
+  <p>
+    <strong>Sync ID:</strong>
+    <%= @event_day.rwu_id %>
+  </p>
+
+  <p>
+    <strong>Event:</strong>
+    <%= @event_day.event_name %>
+  </p>
+
+  <p>
+    <strong>Date:</strong>
+    <%= @event_day.date ? @event_day.date.strftime('%m/%d/%Y') : '' %>
+  </p>
+
+  <p>
+    <strong>Start Time:</strong>
+    <%= AMERICA_NEW_YORK_TIME_ZONE.format_time(@event_day.start_time) %>
+  </p>
+
+  <p>
+    <strong>End Time:</strong>
+    <%= AMERICA_NEW_YORK_TIME_ZONE.format_time(@event_day.end_time) %>
+  </p>
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_event_day_path(@event_day) %></li>
+  </ul>
+</div>
