@@ -113,7 +113,7 @@
 	    formData: <%= @s3_direct_post.fields.to_json.html_safe %>,
 	    paramName: 'file',
 	    dataType: 'XML',
-	    replaceFileInput: false,
+	    replaceFileInput: true,
 			progressall: function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
         progress_bar.css('width', progress + '%')
@@ -157,7 +157,6 @@
 				$('#errorMessage').removeClass('alert-success');
 				$('#errorMessage').addClass('alert-danger').html('Something Went Wrong in File Upload. Please Choose file Once Again!!!');
         submit_button.prop('disabled', false);
-        replaceFileInput: true,
 				$('#upload_modal').modal({
 				  backdrop: true,
 				  keyboard: true
