@@ -120,6 +120,9 @@
       },
       start: function (e) {
         submit_button.prop('disabled', true);
+        $('#errorMessage').removeClass('alert-danger').html("");
+        progress_bar.
+          css("background", "")
         progress_bar.				
 					css('background-repeat', 'no-repeat').
           css('background-image', 'linear-gradient(#88c149, #73a839 60%, #699934)').
@@ -152,7 +155,7 @@
 				console.log(data);
 				$('#errorMessage').show();
 				$('#errorMessage').removeClass('alert-success');
-				$('#errorMessage').addClass('alert-danger').html('Something Went Wrong in File Uploading. Please Try Again !!!');
+				$('#errorMessage').addClass('alert-danger').html('Something Went Wrong in File Upload. Please Browse Once Again!!!');
         submit_button.prop('disabled', false);
 				$('#upload_modal').modal({
 				  backdrop: true,
