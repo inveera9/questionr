@@ -120,7 +120,6 @@
       },
       start: function (e) {
         submit_button.prop('disabled', true);
-        replaceFileInput: true,
         $('#errorMessage').removeClass('alert-danger').html("");
         progress_bar.
           css("background", "")
@@ -157,10 +156,10 @@
 				$('#errorMessage').show();
 				$('#errorMessage').removeClass('alert-success');
 				$('#errorMessage').addClass('alert-danger').html('Something Went Wrong in File Upload. Please Choose file Once Again!!!');
-        submit_button.prop('disabled', false);
+        submit_button.prop('disabled', true);
 				$('#upload_modal').modal({
-				  backdrop: true,
-				  keyboard: true
+				  backdrop: 'static',
+					keyboard: false
 				});
 				$('#close_button').prop('disabled', false);
         progress_bar.
