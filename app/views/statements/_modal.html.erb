@@ -155,8 +155,9 @@
 				console.log(data);
 				$('#errorMessage').show();
 				$('#errorMessage').removeClass('alert-success');
-				$('#errorMessage').addClass('alert-danger').html('Something Went Wrong in File Upload. Please Browse Once Again!!!');
+				$('#errorMessage').addClass('alert-danger').html('Something Went Wrong in File Upload. Please Choose file Once Again!!!');
         submit_button.prop('disabled', false);
+        replaceFileInput: true,
 				$('#upload_modal').modal({
 				  backdrop: true,
 				  keyboard: true
