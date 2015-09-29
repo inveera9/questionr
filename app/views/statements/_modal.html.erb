@@ -120,6 +120,7 @@
       },
       start: function (e) {
         submit_button.prop('disabled', true);
+        replaceFileInput: true,
         $('#errorMessage').removeClass('alert-danger').html("");
         progress_bar.
           css("background", "")
@@ -153,7 +154,6 @@
       fail: function(e, data) {
 				console.log(e);
 				console.log(data);
-				replaceFileInput: true,
 				$('#errorMessage').show();
 				$('#errorMessage').removeClass('alert-success');
 				$('#errorMessage').addClass('alert-danger').html('Something Went Wrong in File Upload. Please Choose file Once Again!!!');
