@@ -89,4 +89,7 @@ group :development, :test do
   
   # sample data generator
   gem 'faker'
+
+  gem 'coffee-rails-source-maps'
+  gem 'sass-rails-source-maps'
 end
