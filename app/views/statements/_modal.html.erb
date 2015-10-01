@@ -66,7 +66,7 @@
 				<fieldset class="col-lg-12">
   				<legend><%= steps[3] %></legend>
 					<div id="file_upload" class="col-lg-12">
-						<%= f.file_field :url, accept: "*", id: 'direct-upload', class: "col-lg-12 fail" %>
+						<%= f.file_field :url, accept: "*", id: 'direct-upload', class: "col-lg-12" %>
 					</div>
 				</fieldset>
 		<% end %>
@@ -162,7 +162,6 @@
 				  backdrop: 'static',
 					keyboard: true
 				});
-				$( ".fail" ).empty();
 				$('#close_button').prop('disabled', false);
         progress_bar.
           css("background", "red")
