@@ -144,7 +144,7 @@
 				});
 				$('#errorMessage').show();
 				$('#errorMessage').removeClass('alert-danger');
-				$('#errorMessage').addClass('alert-success').html('File Upload Succesfully. Please click on Share Button');
+				$('#errorMessage').addClass('alert-success').html('File Upload Successfully. Please click on Share Button');
 				$('#close_button').prop('disabled', false);
         var key   = $(data.jqXHR.responseXML).find("Key").text();
         var url   = '//<%= URI(@s3_direct_post.url).host %>/' + key;
