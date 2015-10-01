@@ -109,7 +109,7 @@
 	    fileInput: file_input,
 	    url: '<%= @s3_direct_post.url %>',
 	    type: 'POST',
-	    autoUpload: false,
+	    autoUpload: true,
 	    formData: <%= @s3_direct_post.fields.to_json.html_safe %>,
 	    paramName: 'file',
 	    dataType: 'XML',
@@ -160,7 +160,7 @@
         submit_button.prop('disabled', true);
 				$('#upload_modal').modal({
 				  backdrop: 'static',
-					keyboard: false
+					keyboard: true
 				});
 				$('#close_button').prop('disabled', false);
         progress_bar.
