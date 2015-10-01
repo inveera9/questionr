@@ -109,7 +109,7 @@
 	    fileInput: file_input,
 	    url: '<%= @s3_direct_post.url %>',
 	    type: 'POST',
-	    autoUpload: true,
+	    autoUpload: false,
 	    formData: <%= @s3_direct_post.fields.to_json.html_safe %>,
 	    paramName: 'file',
 	    dataType: 'XML',
