@@ -1,0 +1,29 @@
+
+/*new css start*/
+.ansbgq{background:#ecf0f1; padding:10px; overflow:hidden; border:solid 1px #ccc;}
+.candbgq1 {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)
+}
+.candbgq2{margin:0px; padding:0px;}
+.candbgq3{background:#63b2de; color:#fff; box-shadow:0px 2px 0px #c2c2c2;}
+.candbgq4{padding-left:20px; line-height:25px;}
+.candbgq5{margin:0px; padding:0px;}
+.candbgq6{width:85%; margin-top:6px;}
+.candbgq7{width:65%; margin-top:6px;}
+.candbgq8{width:100%; margin-top:28px; margin-bottom:28px;}
+.candbgq9{background:#fff; padding:10px 10px 0px 0px; overflow:hidden}
+.candbgq10{border:solid 2px #ccc !important; border-top:none !important; background:#fff !important;}
+.candbgq11{/*width:100%; overflow-x:scroll;*/}
+.candbgq12{width:100%; margin-top:21px;}
+.ciclq_green{background:#9ce159; width:50px;height:50px; box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -webkit-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -o-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); border-radius:100px; margin:10px;}
+.ciclq_red{background:#ff2c21; width:50px;height:50px; box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -webkit-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -o-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); border-radius:100px; margin:10px;}
+.ciclq_gray{background:#bfbfbf; width:50px;height:50px; box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -webkit-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -o-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); border-radius:100px; margin:10px;}
+
+/*new css end*/
