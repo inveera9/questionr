@@ -51,8 +51,8 @@
     <%= @statement.third_party_url %>
   </p>
   <p>
-    <strong>Tag:</strong>
-    <%= @statement.title %>
+    <strong>Tags:</strong>
+    <%= raw(sanitize(@statement.description)) %>
   </p>
   <p>
     <strong>Approved:</strong>
