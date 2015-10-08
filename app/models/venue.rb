@@ -2,6 +2,10 @@ class Venue < ActiveRecord::Base
   def self._sync_columns; []; end      
   def _sync_columns; Venue._sync_columns; end  
   include DirtyColumns
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  
   has_many :events
   after_save { |v| v.geocode if self.street_address1_changed? or
                                 self.city_changed? or

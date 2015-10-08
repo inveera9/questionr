@@ -43,12 +43,45 @@
         <td><%= e.public? ? 'Yes' : 'No' %></td>
       </tr>
     <% end %>
+    
     <% @candidates.each do |c| %>
       <tr>
         <td><%= link_to(c.person_name, c)%></td>
-        <td colspan='4'>&nbsp;</td>
+        <% c.events.each do |e| %>
+        <td><%= e.format_speakers %></td>
+        <td><%= link_to e.title, e %></td>
+        <td><%= e.format_location %></td>
+        <td><%= e.public? ? 'Yes' : 'No' %></td>
+        <% end %>
       </tr>
     <% end %>
-    </body>
+
+    <% @event_days.each do |e| %>
+      <tr>
+        <td><%e.event.candidates.each do |c| %>
+              <%=link_to(c.person_name, c) %>
+            <% end %></td>
+        <td><%= e.event.format_speakers %></td>
+        <td><%= link_to e.event.title, e.event %></td>
+        <td><%= e.event.format_location %></td>
+        <td><%= e.event.public? ? 'Yes' : 'No' %></td>
+      </tr>
+    <% end %>
+
+    <% @venues.each do |foo| %>
+
+      <% foo.events.each do |e| %>
+      <tr>
+        <td><%e.candidates.each do |c| %>
+              <%=link_to(c.person_name, c) %>
+            <% end %></td>
+        <td><%= e.format_speakers %></td>
+        <td><%= link_to e.title, e %></td>
+        <td><%= e.format_location %></td>
+        <td><%= e.public? ? 'Yes' : 'No' %></td>
+      </tr>
+    <% end %>
+    <% end %>
+    </tbody>
   </table>
 </div>

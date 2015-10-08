@@ -3,6 +3,11 @@ class EventDay < ActiveRecord::Base
   def _sync_columns; EventDay._sync_columns; end  
   include DirtyColumns
 
+
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  
   belongs_to :event
   has_many :statements
   has_many :attendees
