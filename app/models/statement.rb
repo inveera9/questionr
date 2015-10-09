@@ -29,8 +29,8 @@ class Statement < ActiveRecord::Base
   accepts_nested_attributes_for :user, allow_destroy: false
 
   attr_reader :user_name, :event_name, :campaign_name, :candidate_name
-  attr_accessor :tags
-
+  acts_as_taggable
+  acts_as_taggable_on 
   
   def user_name
     u = self.user

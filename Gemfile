@@ -68,7 +68,8 @@ gem "twitter-bootstrap-rails"
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
-
+gem 'bonsai-elasticsearch-rails'
+gem 'acts-as-taggable-on', '~> 3.4'
 # HTTP client
 gem 'faraday'
 

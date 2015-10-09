@@ -52,7 +52,8 @@
   </p>
   <p>
     <strong>Tags:</strong>
-    <%= @statement.tags %>
+    <%= raw @statement.tag_list.map { |t| link_to t, statements_path(t) }.join(', ') %>
+    
   </p>
   <p>
     <strong>Approved:</strong>

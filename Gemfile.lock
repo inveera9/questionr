@@ -36,6 +36,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (3.5.0)
+      activerecord (>= 3.2, < 5)
     arel (6.0.3)
     awesome_print (1.6.1)
     aws-sdk-core (2.1.24)
@@ -44,6 +46,7 @@ GEM
       aws-sdk-core (= 2.1.24)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bonsai-elasticsearch-rails (0.0.4)
     bootstrap3-datetimepicker-rails (4.7.14)
       momentjs-rails (>= 2.8.1)
     bower-rails (0.10.0)
@@ -233,9 +236,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 3.4)
   awesome_print
   aws-sdk-core
   aws-sdk-resources
+  bonsai-elasticsearch-rails
   bootstrap3-datetimepicker-rails (~> 4.7.14)
   bower-rails
   byebug

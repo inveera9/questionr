@@ -5,7 +5,11 @@ class StatementsController < ApplicationController
   # GET /statements
   # GET /statements.json
   def index
-    @statements = Statement.all
+    if params[:tag].present? 
+      @pstatements = Statement.tagged_with(params[:tag])
+    else 
+      @statements = Statement.all
+    end
   end
 
   def browse
@@ -93,7 +97,7 @@ class StatementsController < ApplicationController
                                         :ugc_notes, 
                                         :youtube_url,
                                         :third_party_url,
-                                        :tags,
+                                        :tag_list,
                                         user_attributes: [:first_name, :last_name, :email, :mobile_phone, :postal_code])
     end
 end
