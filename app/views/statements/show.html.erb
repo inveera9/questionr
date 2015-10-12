@@ -52,7 +52,7 @@
   </p>
   <p>
     <strong>Tags:</strong>
-    <%= raw @statement.tag_list.map { |t| link_to t, statements_path(t) }.join(', ') %>
+    <%= raw @statement.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
     
   </p>
   <p>

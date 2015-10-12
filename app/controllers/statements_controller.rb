@@ -6,7 +6,7 @@ class StatementsController < ApplicationController
   # GET /statements.json
   def index
     if params[:tag].present? 
-      @pstatements = Statement.tagged_with(params[:tag])
+      @statements = Statement.tagged_with(params[:tag])
     else 
       @statements = Statement.all
     end
