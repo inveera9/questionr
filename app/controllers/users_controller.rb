@@ -85,7 +85,7 @@ class UsersController < ApplicationController
   def logout_admin
     cookies[:current_user_id] = nil
     session = nil
-    redirect_to root_path
+    redirect_to admin_path
   end
 
   private
