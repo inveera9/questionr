@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     
     #if that fails, try to get the user_id from a cookie
     user_id = cookies[:current_user_id]
-    
+
     #try to find the user
     if user_id
       begin
@@ -27,6 +27,8 @@ class ApplicationController < ActionController::Base
     #we'll end up here, so create a new "guest" user and cookie its id
     reset_current_user(User.create)
   end
+
+  
   
   def set_default_statement
     @default_statement ||= Statement.new(:user => @current_user)

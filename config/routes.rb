@@ -4,6 +4,8 @@ ResqueWeb::Engine.eager_load!
 
 Rails.application.routes.draw do
   root 'statements#new'
+  delete 'logout'  => 'users#logout_admin', as: :logout
+
   get 'search' => 'search#search'
   post 'user/social_auth' => 'users#social_auth'
   resources :users
