@@ -45,6 +45,7 @@ module NhrQuestioner
       username == "john.inveera" and password == "test!234"
     end
     config.janrain_api_url = URI.parse "https://inveera-questionr.rpxnow.com/api/v2/auth_info"
+    
     config.janrain_api_key = ENV['JANRAIN_API_KEY']
     config.janrain_token_url = "#{ENV['URL']}/user/social_auth"
 
@@ -73,7 +74,7 @@ class << AMERICA_NEW_YORK_TIME_ZONE
     "#{t.strftime('%B %-d, %Y')}"
   end
 end
-
+Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']
 #set up connections to external services
 REDIS = Redis.new url: ENV['REDISTOGO_URL']
 Resque.redis = REDIS
