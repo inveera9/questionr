@@ -4,9 +4,7 @@ class EventDay < ActiveRecord::Base
   include DirtyColumns
 
 
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
-
+  
   
   belongs_to :event
   has_many :statements

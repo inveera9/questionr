@@ -5,8 +5,6 @@ class Event < ActiveRecord::Base
   def _sync_columns; Event._sync_columns; end  
   include DirtyColumns
   
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
   
   belongs_to :venue
   has_many :event_days, -> { order('date').order('start_time') }
