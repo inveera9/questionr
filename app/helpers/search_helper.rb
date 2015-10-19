@@ -31,7 +31,7 @@ module SearchHelper
       statement.candidate.person_name.to_s.downcase.include? params[:q]
     elsif params[:e].present?
       statement.candidate.events.map(&:title).include? params[:e]
-    elsif params[:v].present? && statement.event_day.event.venue.present?
+    elsif params[:v].present? && statement.event_day.event.present? && statement.event_day.event.present? && statement.event_day.event.venue.present?
       statement.event_day.event.venue.name.include? params[:v]
     elsif params[:d].present? && statement.event_day.present?
       statement.event_day.date.strftime("%m/%d/%Y") == params[:d]
