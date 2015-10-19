@@ -1,8 +1,8 @@
 <% if notice || alert %>
 <div class="row">
   <div class="alert alert-dismissible alert-<%=notice ? 'success' : 'danger'%> col-lg-12">
-  	<button type="button" class="close" data-dismiss="alert">×</button>
-  	<%= notice || alert %>
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= notice || alert %>
   </div>
 </div>
 <% end %>
@@ -10,26 +10,37 @@
 
 <h1 class="col-lg-12">The Answers</h1>
 <div class="ansbgq input-group" id="stbrowse">
-	<%= form_tag("/search", :method=>"get") do %>
-		<div class="col-lg-2">Candidate Name<br>
-			<input name="q" type="text" class="form-control" placeholder="Candidate Name"/>
-		</div>
-		<div class="col-lg-2">Events<br>
-			<input name="e" type="text" class="form-control" placeholder="Events"/>
-		</div>
-		<div class="col-lg-2">Events Date<br>
-			<input name="d" type="text" class="datepicker form-control" placeholder="Events Date"/>
-		</div>
-		<div class="col-lg-2">Venues<br>
-			<input name="v" type="text" class="form-control" placeholder="Venues"/>
-		</div>
-		<!-- <span class="input-group-btn "> -->
-			<div class="col-lg-2">
-				<input type="submit" value="Search" class="btn btn-info candbgq12"/>
-			</div>
-		<!-- </span> -->
-	<% end %>
+  <%= form_tag("/search", :method=>"get") do %>
+    <div class="col-lg-2">Candidate Name<br>
+      <input name="q" type="text" class="form-control" placeholder="Candidate Name"/>
+    </div>
+    <div class="col-lg-2">Events<br>
+      <input name="e" type="text" class="form-control" placeholder="Events"/>
+    </div>
+    <div class=" col-lg-3">
+      <div id="event-day-date" class="input-group">
+        Events Date<br>
+        <input name="d" type="text" class="datepicker form-control" placeholder="Events Date" id="event_day_date"/>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-2">Venues<br>
+      <input name="v" type="text" class="form-control" placeholder="Venues"/>
+    </div>
+    <!-- <span class="input-group-btn "> -->
+      <div class="col-lg-2">
+        <input type="submit" value="Search" class="btn btn-info candbgq12"/>
+      </div>
+    <!-- </span> -->
+  <% end %>
 </div>
 
 <%= render 'videos' %>
 
+<script>
+  $('#event-day-date').datetimepicker({
+    format: 'MM/DD/YYYY'
+  });
+</script>

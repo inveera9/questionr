@@ -62,4 +62,9 @@ class Statement < ActiveRecord::Base
   def date
     self.event_day ? self.event_day.date : self.created_at 
   end
+  
+  def self.advance_search(candidate,location,date,event)
+    statements = Statement.approved
+    statements.select{|statement| statement.candidate.person.first_name.to_s.downcase.include? candidate.to_s.downcase or statement.event_day.event.venue.name.to_s.downcase == location.to_s.downcase or statement.event_day.event.title.to_s.downcase == event.to_s.downcase or statement.event_day.date.strftime("%m/%d/%Y") == date }.uniq
+  end
 end

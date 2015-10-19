@@ -1,6 +1,6 @@
 
 /*new css start*/
-.ansbgq{background:#ecf0f1; padding:10px; overflow:hidden; border:solid 1px #ccc; margin-bottom: 25px;}
+.ansbgq{background:#ecf0f1; padding:10px;  border:solid 1px #ccc; margin-bottom: 25px;}
 .candbgq1 {
     min-height: 20px;
     padding: 19px;
@@ -27,6 +27,6 @@
 .ciclq_gray{background:#bfbfbf; width:50px;height:50px; box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -webkit-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -o-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); border-radius:100px; margin:10px;}
 
 /*Statement browse hide*/
-#stbrowse{display: none;}
+
 /*end*/
 /*new css end*/
