@@ -46,7 +46,7 @@
             <td><%= event.format_location %></td>
             <td><%= event.public? ? 'Yes' : 'No' %></td>
             <% end %>
-            <td><%= statement.event_day.date.strftime("%m/%d/%Y") %></td>
+            <td><%= statement.event_day.date.strftime("%m/%d/%Y") if statement.event_day.present? %></td>
           </tr>
         <% end %>
       <% end %>
