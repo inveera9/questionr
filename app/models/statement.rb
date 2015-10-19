@@ -65,6 +65,6 @@ class Statement < ActiveRecord::Base
   
   def self.advance_search(candidate,location,date,event)
     statements = Statement.approved
-    statements.select{|statement| (statement.candidate.present? ? (statement.candidate.person_name.to_s.downcase.include? candidate.to_s.downcase) : false ) or (statement.event_day.present? ?  (statement.event_day.event.venue.name.to_s.downcase == location.to_s.downcase or statement.event_day.event.title.to_s.downcase == event.to_s.downcase or statement.event_day.date.strftime("%m/%d/%Y") == date) : false) }.uniq
+    statements.select{|statement| (statement.candidate.present? ? (statement.candidate.person_name.to_s.downcase.include? candidate.to_s.downcase) : false ) or (statement.event_day.present? ?  ( ( statement.event_day.event.venue.present? ? (statement.event_day.event.venue.name.to_s.downcase == location.to_s.downcase) :  false) or statement.event_day.event.title.to_s.downcase == event.to_s.downcase or statement.event_day.date.strftime("%m/%d/%Y") == date) : false) }.uniq
   end
 end
