@@ -3,23 +3,23 @@ module SearchHelper
   def search_filter(statement)
     #if all params present
     if params[:q].present? && params[:e].present? && params[:v].present? && params[:d].present? && venue(statement)
-      statement.candidate.person_name.to_s.downcase.include? params[:q] and  statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase } and statement.event_day.event.venue.name.include? params[:v].downcase and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]
+      statement.candidate.person_name.to_s.downcase.include? params[:q].downcase and  statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase } and statement.event_day.event.venue.name.include? params[:v].downcase and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]
     #if any three params present
     elsif params[:q].present? && params[:e].present? && params[:v].present? && statement.event_day.present? && statement.event_day.event.present? && statement.event_day.event.venue.present?
-      statement.candidate.person_name.to_s.downcase.include? params[:q] and  statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase } and statement.event_day.event.venue.name.include? params[:v].downcase
+      statement.candidate.person_name.to_s.downcase.include? params[:q].downcase and  statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase } and statement.event_day.event.venue.name.include? params[:v].downcase
     elsif params[:e].present? && params[:v].present? && params[:d].present? && venue(statement)
       statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase } and statement.event_day.event.venue.name.include? params[:v].downcase and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]
     elsif params[:q].present? && params[:v].present? && params[:d].present? && venue(statement)
-      statement.candidate.person_name.to_s.downcase.include? params[:q] and statement.event_day.event.venue.name.include? params[:v].downcase and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]
+      statement.candidate.person_name.to_s.downcase.include? params[:q].downcase and statement.event_day.event.venue.name.include? params[:v].downcase and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]
     elsif params[:q].present? && params[:e].present? && params[:d].present? && event_day(statement)
-      statement.candidate.person_name.to_s.downcase.include? params[:q] and  statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase } and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]    
+      statement.candidate.person_name.to_s.downcase.include? params[:q].downcase and  statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase } and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]    
     #if any two params present
     elsif params[:q].present? && params[:e].present?
-      statement.candidate.person_name.to_s.downcase.include? params[:q] and  statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase }
+      statement.candidate.person_name.to_s.downcase.include? params[:q].downcase and  statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase }
     elsif params[:q].present? && params[:v].present? && statement.event_day.present? && statement.event_day.event.present? && statement.event_day.event.venue.present?
-      statement.candidate.person_name.to_s.downcase.include? params[:q] and statement.event_day.event.venue.name.include? params[:v].downcase
+      statement.candidate.person_name.to_s.downcase.include? params[:q].downcase and statement.event_day.event.venue.name.include? params[:v].downcase
     elsif params[:q].present? && params[:d].present?
-      statement.candidate.person_name.to_s.downcase.include? params[:q] and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]
+      statement.candidate.person_name.to_s.downcase.include? params[:q].downcase and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]
     elsif params[:e].present? && params[:v].present? && venue(statement) 
       statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase } and statement.event_day.event.venue.name.include? params[:v].downcase
     elsif params[:e].present? && params[:d].present? && event_day(statement)
@@ -28,7 +28,7 @@ module SearchHelper
       statement.event_day.event.venue.name.include? params[:v].downcase and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]
     #if any one params present
     elsif params[:q].present?
-      statement.candidate.person_name.to_s.downcase.include? params[:q]
+      statement.candidate.person_name.to_s.downcase.include? params[:q].downcase
     elsif params[:e].present?
       statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase }
     elsif params[:v].present? && venue(statement)
