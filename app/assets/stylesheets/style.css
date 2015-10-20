@@ -1,5 +1,6 @@
 
 /*new css start*/
+#errorMessage{display:none; margin: 0; text-align: center;}
 .ansbgq{background:#ecf0f1; padding:10px;  border:solid 1px #ccc; margin-bottom: 25px;}
 .candbgq1 {
     min-height: 20px;
@@ -25,7 +26,12 @@
 .ciclq_green{background:#9ce159; width:50px;height:50px; box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -webkit-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -o-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); border-radius:100px; margin:10px;}
 .ciclq_red{background:#ff2c21; width:50px;height:50px; box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -webkit-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -o-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); border-radius:100px; margin:10px;}
 .ciclq_gray{background:#bfbfbf; width:50px;height:50px; box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -moz-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -webkit-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); -o-box-shadow: 0 7px 4px rgba(0, 0, 0, 0.25); border-radius:100px; margin:10px;}
-
+.token-input-list{
+  width: 96% !important;
+}
+.token-input-dropdown{
+  width: 226px !important;
+}
 /*Statement browse hide*/
 
 /*end*/

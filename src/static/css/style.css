@@ -101,3 +101,6 @@ input.btn.btn-primary{font-size:200%;}
 
 
 form.start{margin-top:50px;}
+.token-input-list{
+  width: 96% !important;
+}
