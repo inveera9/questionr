@@ -61,6 +61,14 @@
   </p>
     
   <ul class="pager">
-  	<li class="next"><%= link_to 'Edit →', edit_statement_path(@statement) %></li>
+  	<li class="next">
+      <%= link_to 'Edit →', edit_statement_path(@statement), class: "edit-statement" %>
+    </li>
   </ul>
 </div>
+<script type="text/javascript">
+  $(document).on('click', '.edit-statement', function(){
+    var path = window.location.href+"/edit"
+    window.location.href = path
+  });
+</script>

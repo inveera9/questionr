@@ -32,10 +32,17 @@
         <td><%= statement.user_name %></td>
         <td><%= statement.approved %></td>
         <td><%= link_to 'Show', statement, class: 'btn btn-sm btn-info' %></td>
-        <td><%= link_to 'Edit', edit_statement_path(statement), class: 'btn btn-sm btn-warning' %></td>
+        <td><%= link_to 'Edit', edit_statement_url(statement), class: 'btn btn-sm btn-warning edit-statement', statement_id: statement.id %></td>
         <td><%= link_to 'Destroy', statement, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <%= link_to 'New Statement', new_statement_path, class: "btn btn-primary" %>
+<script type="text/javascript">
+  $(document).on('click', '.edit-statement', function(){
+    var id = $(this).attr('statement_id');
+    var path = window.location.href+"/"+id+"/edit"  
+    window.location.href = path
+  });
+</script>
