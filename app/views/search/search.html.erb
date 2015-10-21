@@ -90,28 +90,30 @@
     </thead>
     <tbody>
       <% @statements.each do |statement| %>
-      <% if search_filter(statement) %>
-      <tr class="search_row">
-        <td>
-          <%= link_to(statement.candidate.person_name, statement.candidate)%>
-        </td>
-        <td>
-          <%= statement.event_day.present? ? (statement.event_day.event.format_speakers.present? ? statement.event_day.event.format_speakers : 'N/A') : 'N/A' %>
-        </td>
-        <td>
-          <%= statement.event_day.present? ? (link_to statement.event_day.event.title, event_path(statement.event_day.event)) : 'N/A' %>
-        </td>
-        <td>
-          <%= statement.event_day.present? ? statement.event_day.event.format_location : 'N/A' %>
-        </td>
-        <td>
-          <%= statement.event_day.present? ? statement.event_day.date.strftime("%m/%d/%Y") : 'N/A' %>
-        </td>
-        <td>
-          <%= statement.event_day.present? ? (statement.event_day.event.public ? 'Yes' : 'No') : 'N/A' %>
-        </td>
-      </tr>
-      <% end %>
+        <% if statement.candidate.present? %>
+          <% if search_filter(statement) %>
+            <tr class="search_row">
+              <td>
+                <%= link_to(statement.candidate.person_name, statement.candidate)%>
+              </td>
+              <td>
+                <%= statement.event_day.present? ? (statement.event_day.event.format_speakers.present? ? statement.event_day.event.format_speakers : 'N/A') : 'N/A' %>
+              </td>
+              <td>
+                <%= statement.event_day.present? ? (link_to statement.event_day.event.title, event_path(statement.event_day.event)) : 'N/A' %>
+              </td>
+              <td>
+                <%= statement.event_day.present? ? statement.event_day.event.format_location : 'N/A' %>
+              </td>
+              <td>
+                <%= statement.event_day.present? ? statement.event_day.date.strftime("%m/%d/%Y") : 'N/A' %>
+              </td>
+              <td>
+                <%= statement.event_day.present? ? (statement.event_day.event.public ? 'Yes' : 'No') : 'N/A' %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
       <% end %>
     </tbody>
   </table>
