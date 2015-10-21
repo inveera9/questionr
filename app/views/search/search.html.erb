@@ -61,7 +61,7 @@
               <%= statement.event_day.present? ? (statement.event_day.event.format_speakers.present? ? statement.event_day.event.format_speakers : 'N/A') : 'N/A' %>
             </td>
             <td>
-              <%= statement.event_day.present? ? statement.event_day.event.title : 'N/A' %>
+              <%= statement.event_day.present? ? (link_to statement.event_day.event.title, event_path(statement.event_day.event)) : 'N/A' %>
             </td>
             <td>
               <%= statement.event_day.present? ? statement.event_day.event.format_location : 'N/A' %>
