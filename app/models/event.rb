@@ -63,7 +63,7 @@ class Event < ActiveRecord::Base
     if v
       [v.name, v.city, v.state, v.postal_code].delete_if { |d| d.nil? or d.blank? }.join(", ")
     else
-      ""
+      "N/A"
     end
   end
   

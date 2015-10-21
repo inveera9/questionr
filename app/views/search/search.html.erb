@@ -33,7 +33,7 @@
   <% end %>
 
 </div>
-<h3 class="col-lg-offset-6 col-lg-2"> Result(s): <span id="searchResult"></span></h3>
+<h3 class="col-lg-2"> Result(s): <span id="searchResult"></span></h3>
 
 <div class="col-lg-12" style="margin-top: 20px">
   <% if @statements.blank? %>
@@ -46,22 +46,32 @@
           <th>Speaker(s)</th>
           <th>Event Name</th>
           <th>Location</th>
-          <th>Public</th>
           <th>Date</th>
+          <th>Public</th>
         </tr>
       </thead>
       <tbody>
       <% @statements.each do |statement| %>
         <% if search_filter(statement) %>
           <tr class="search_row">
-            <td><%= link_to(statement.candidate.person_name, statement.candidate)%></td>
-            <% statement.candidate.events.each do |event| %>
-            <td><%= event.format_speakers %></td>
-            <td><%= link_to event.title, event %></td>
-            <td><%= event.format_location %></td>
-            <td><%= event.public? ? 'Yes' : 'No' %></td>
-            <% end %>
-            <td><%= statement.event_day.date.strftime("%m/%d/%Y") if statement.event_day.present? %></td>
+            <td>
+              <%= link_to(statement.candidate.person_name, statement.candidate)%>
+            </td>
+            <td>
+              <%= statement.event_day.present? ? (statement.event_day.event.format_speakers.present? ? statement.event_day.event.format_speakers : 'N/A') : 'N/A' %>
+            </td>
+            <td>
+              <%= statement.event_day.present? ? (link_to statement.event_day.event.title, event_path(statement.event_day.event)) : 'N/A' %>
+            </td>
+            <td>
+              <%= statement.event_day.present? ? statement.event_day.event.format_location : 'N/A' %>
+            </td>
+            <td>
+              <%= statement.event_day.present? ? statement.event_day.date.strftime("%m/%d/%Y") : 'N/A' %>
+            </td>
+            <td>
+              <%= statement.event_day.present? ? (statement.event_day.event.public ? 'Yes' : 'No') : 'N/A' %>
+            </td>
           </tr>
         <% end %>
       <% end %>

@@ -4,8 +4,8 @@
 		<div class="alert alert-dismissible alert-danger col-lg-12">
 	  	<button type="button" class="close" data-dismiss="alert">×</button>
       <ul>
-      <% @statement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @statement.errors.messages.keys.each do |key| %>
+        <li><%= @statement.errors.messages[key].first %></li>
       <% end %>
       </ul>
     </div>

@@ -27,7 +27,7 @@ module SearchHelper
     elsif params[:v].present? && params[:d].present? && venue(statement)
       statement.event_day.event.venue.name.downcase.include? params[:v].downcase and statement.event_day.date.strftime("%m/%d/%Y") == params[:d]
     #if any one params present
-    elsif params[:q].present?
+    elsif params[:q].present? && statement.candidate.present?
       statement.candidate.person_name.to_s.downcase.include? params[:q].downcase
     elsif params[:e].present?
       statement.candidate.events.map(&:title).map(&:downcase).any? {|word| word.include? params[:e].downcase }
