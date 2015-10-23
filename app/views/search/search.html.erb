@@ -85,46 +85,53 @@
         <% if @statements.blank? %>
           <div class="warning">Sorry, We didn't find any result.</div>
         <% else %>
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th>Candidate(s)</th>
-              <th>Speaker(s)</th>
-              <th>Event Name</th>
-              <th>Location</th>
-              <th>Event Date</th>
-              <!-- <th>Public</th> -->
-            </tr>
-          </thead>
-          <tbody>
-            <% @statements.each do |statement| %>
-              <% if statement.candidate.present? %>
-                <% if search_filter(statement) %>
-                  <tr class="search_row">
-                    <td>
-                      <%= link_to statement.candidate.person_name, candidate_path(statement.candidate, search: "videos") %>
-                    </td>
-                    <td>
-                      <%= statement.event_day.present? ? (statement.event_day.event.format_speakers.present? ? statement.event_day.event.format_speakers : 'N/A') : 'N/A' %>
-                    </td>
-                    <td>
-                      <%= statement.event_day.present? ? (link_to statement.event_day.event.title, event_path(statement.event_day.event)) : 'N/A' %>
-                    </td>
-                    <td>
-                      <%= statement.event_day.present? ? statement.event_day.event.format_location : 'N/A' %>
-                    </td>
-                    <td>
-                      <%= statement.event_day.present? ? statement.event_day.date.strftime("%m/%d/%Y") : 'N/A' %>
-                    </td>
-                    <!-- <td>
-                      <%#= statement.event_day.present? ? (statement.event_day.event.public ? 'Yes' : 'No') : 'N/A' %>
-                    </td> -->
-                  </tr>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover search-table">
+            <thead>
+              <tr>
+                <th>Candidate(s)</th>
+                <th>Speaker(s)</th>
+                <th>Event Name</th>
+                <th>Location</th>
+                <th>Event Date</th>
+                <!-- <th>Public</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <% @statements.each do |statement| %>
+                <% if statement.candidate.present? %>
+                  <% if search_filter(statement) %>
+                    <tr class="search_row">
+                      <td>
+                        <span>
+                          <%= image_tag statement.candidate.person_image_url, { width: '40px' } %>
+                        </span>
+                        <span>&nbsp;&nbsp;
+                          <%= link_to statement.candidate.person_name, candidate_path(statement.candidate, search: "videos") %>
+                        </span>
+                      </td>
+                      <td>
+                        <%= statement.event_day.present? ? (statement.event_day.event.format_speakers.present? ? statement.event_day.event.format_speakers : 'N/A') : 'N/A' %>
+                      </td>
+                      <td>
+                        <%= statement.event_day.present? ? (link_to statement.event_day.event.title, event_path(statement.event_day.event)) : 'N/A' %>
+                      </td>
+                      <td>
+                        <%= statement.event_day.present? ? statement.event_day.event.format_location : 'N/A' %>
+                      </td>
+                      <td>
+                        <%= statement.event_day.present? ? statement.event_day.date.strftime("%m/%d/%Y") : 'N/A' %>
+                      </td>
+                      <!-- <td>
+                        <%#= statement.event_day.present? ? (statement.event_day.event.public ? 'Yes' : 'No') : 'N/A' %>
+                      </td> -->
+                    </tr>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       <% end %>
     </div>
   </div>

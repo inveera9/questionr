@@ -65,3 +65,21 @@ ul.token-input-list{background-color: #fff;
     padding: 0;
     width: 400px;
     z-index: 999;}
+
+
+/*****************************************************/
+.search-table thead tr th, .search-table tbody tr td{
+  text-align: center;
+  vertical-align: middle!important;
+}
+.search-table span {
+
+}
+.search-table tbody td:first-child {
+  text-align: left;
+  min-width: 170px;
+}
+div#video-answers iframe {
+  width:100%!important;
+  margin-left: 0!important;
+}
