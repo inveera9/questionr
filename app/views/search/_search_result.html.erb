@@ -1,0 +1,22 @@
+<tr class="search_row">
+  <td>
+    <span>
+      <%= image_tag statement.candidate.person_image_url, { width: '40px' } %>
+    </span>
+    <span>&nbsp;&nbsp;
+      <%= link_to statement.candidate.person_name, candidate_path(statement.candidate, search: "videos") %>
+    </span>
+  </td>
+  <td>
+    <%= statement.event_day.present? ? (statement.event_day.event.format_speakers.present? ? statement.event_day.event.format_speakers : 'N/A') : 'N/A' %>
+  </td>
+  <td>
+    <%= statement.event_day.present? ? (link_to statement.event_day.event.title, event_path(statement.event_day.event)) : 'N/A' %>
+  </td>
+  <td>
+    <%= statement.event_day.present? ? statement.event_day.event.format_location : 'N/A' %>
+  </td>
+  <td>
+    <%= statement.event_day.present? ? statement.event_day.date.strftime("%m/%d/%Y") : 'N/A' %>
+  </td>
+</tr>

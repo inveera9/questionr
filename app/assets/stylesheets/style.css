@@ -57,3 +57,38 @@ div#video-answers iframe {
   width:100%!important;
   margin-left: 0!important;
 }
+.search-inactive{
+  display: none;
+}
+.search-active{
+  display: block;
+}
+.acor-tab-q{left: -89px;}
+
+.acor-tab-btn{
+  background-color: #ccc !important;
+  border-radius:1px !important; 
+  color:#000 !important;
+  border: solid 1px #d3d3d3 !important;
+}
+.acor-tab-btn2{
+  background-color: #ddd !important;
+  border-radius:1px !important; 
+  color:#000 !important;
+  border: solid 1px #d3d3d3 !important;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) { 
+  .acor-tab-q{left: 0px;}
+  .martp{margin-top: 8px;}
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+  .acor-tab-q{left: 0px;}
+  .martp {
+    margin-top: 13px;
+}

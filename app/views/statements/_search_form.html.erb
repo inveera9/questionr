@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 frm-padmar">
+      <h2>The Answer</h2>
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 frm-padmar">
+          <div class="form-group">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <button id="tag-search-btn" class="btn martp acor-tab-btn">Tag Search</button>
+           </div>
+         </div>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 frm-padmar acor-tab-q">
+          <div class="form-group">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <button id="advance-search-btn" class="btn btn-info martp acor-tab-btn2">Advance Search</button>
+           </div>
+         </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        
+        <div class="panel-body martp2">
+          <%= form_tag("/search", :method=>"get") do %>
+            <div class="row tag-search-block">
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frm-padmar">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-12 adnwstdnt">Tags</label>
+                  <div class="col-sm-12">
+                    <input name="t" type="text" class="form-control" placeholder="Tags"/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 frm-padmar">
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <input type="submit" value="Search" class="btn btn-info martp"/>
+                 </div>
+               </div>
+              </div>
+            </div>
+            <div class="row advance-search-block search-inactive" >
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frm-padmar">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-12 adnwstdnt">Candidate Name</label>
+                  <div class="col-sm-12">
+                    <input name="q" type="text" class="form-control" placeholder="Candidate Name"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frm-padmar">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-12">Event</label>
+                  <div class="col-sm-12">
+                    <input name="e" type="text" class="form-control" placeholder="Events"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 frm-padmar">
+                  <div class="form-group">
+                    <div id="event-day-date" class="col-sm-12 input-group">
+                      <label for="inputEmail3" class="col-sm-12">Event Date</label>
+                      <div class='input-group date'>
+                      <input name="d" type="text" class="datepicker form-control" placeholder="Events Date" id="event_day_date"/>
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 frm-padmar">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-12">Venues</label>
+                  <div class="col-sm-12">
+                    <input name="v" type="text" class="form-control" placeholder="Venues"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 frm-padmar">
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <input type="submit" value="Search" class="btn btn-info martp"/>
+                 </div>
+               </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

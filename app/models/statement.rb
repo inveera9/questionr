@@ -68,6 +68,11 @@ class Statement < ActiveRecord::Base
     statements.select{|statement| (statement.candidate.present? ? (statement.candidate.person_name.to_s.downcase.include? candidate.to_s.downcase) : false ) or (statement.event_day.present? ?  ( ( statement.event_day.event.venue.present? ? (statement.event_day.event.venue.name.to_s.downcase.include? location.to_s.downcase) :  false) or statement.event_day.event.title.to_s.downcase.include? event.to_s.downcase or statement.event_day.date.strftime("%m/%d/%Y") == date) : false) }.uniq
   end
 
+  def self.tag_search(tag_params)
+    statements = Statement.approved
+    statements.select{|statement| statement.tag_list.map(&:downcase).any? {|word| word.include? tag_params.downcase }}
+  end
+
   private
     def validate_statement?
       if self.approved
