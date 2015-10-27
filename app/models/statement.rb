@@ -15,6 +15,8 @@ class Statement < ActiveRecord::Base
   def _sync_columns; Statement._sync_columns; end  
   include DirtyColumns
 
+  after_create :thanks_email_to_user
+  
   belongs_to :user
   belongs_to :event_day
   belongs_to :campaign
@@ -66,6 +68,10 @@ class Statement < ActiveRecord::Base
   def self.advance_search(candidate,location,date,event)
     statements = Statement.approved
     statements.select{|statement| (statement.candidate.present? ? (statement.candidate.person_name.to_s.downcase.include? candidate.to_s.downcase) : false ) or (statement.event_day.present? ?  ( ( statement.event_day.event.venue.present? ? (statement.event_day.event.venue.name.to_s.downcase.include? location.to_s.downcase) :  false) or statement.event_day.event.title.to_s.downcase.include? event.to_s.downcase or statement.event_day.date.strftime("%m/%d/%Y") == date) : false) }.uniq
+  end
+
+  def thanks_email_to_user
+    VideoMailer.video_submission(user).deliver if user.present? && user.email.present?
   end
 
   private
