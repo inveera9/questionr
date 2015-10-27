@@ -1,4 +1,3 @@
-<%= javascript_include_tag 'jquery.tokeninput', 'data-turbolinks-track'=>true %>
 <%= form_for(@statement, html: { class: "form-horizontal" }) do |f| %>
   <% if @statement.errors.any? %>
 		<div class="alert alert-dismissible alert-danger col-lg-12">
@@ -150,16 +149,3 @@
     </fieldset>
   </div>
 <% end %>
-
-<script>
-$(document).ready(function () {
-    var items = <%= raw @statement.tag_list.to_json %>;
-    var i=0;
-    var tag_items = [];
-    for (i = 0; i < items.length; i++) {
-      hs = {user_name: items[i]}
-      tag_items.push(hs);
-    }
-    $("#statement_tag_list").tokenInput('/people', { propertyToSearch: 'user_name', preventDuplicates: true, tokenValue: "user_name", prePopulate: tag_items });
-});
-</script>
