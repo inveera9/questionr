@@ -23,8 +23,8 @@ class Statement < ActiveRecord::Base
   default_scope { includes(:event_day).order("event_days.date desc").order("statements.created_at desc") } 
   scope :approved, -> { includes(:event_day)
                           .where(approved: true)
-                          .where('youtube_url is not null')
-                          .order('event_days.date desc') }
+                          .where("youtube_url != ''")
+                          .order("event_days.date desc") }
 
   accepts_nested_attributes_for :user, allow_destroy: false
 

@@ -26,7 +26,7 @@
       <% if @videos.blank? %>
         <div class="warning">Sorry, We didn't find any result.</div>
       <% else %>
-        <div class="row">
+        <div id="video-answers" class="row">
           <% @videos.each do |statement| %>
             <% if statement.candidate.present? %>
               <% if params[:t].present? %>
