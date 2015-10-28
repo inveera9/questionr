@@ -5,7 +5,7 @@
     <% if @current_user.admin? %>
       <%=link_to video.title.truncate(31), edit_statement_path(video), title: video.title  %>
     <% else %>
-      <%=video.title.truncate(31), title: video.title %>
+      <div title="<%=video.title%>"><%=video.title.truncate(31) %></div>
     <% end %>
     </h4>
     <iframe class="col-lg-12 ifrmq" src="<%=video.youtube_embed_url%>?hd=1&rel=0&autohide=1&showinfo=0" frameborder="0"></iframe>
