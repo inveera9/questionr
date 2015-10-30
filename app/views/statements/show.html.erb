@@ -57,7 +57,7 @@
   </p>
   <p>
     <strong>Issue Tag:</strong>
-    <%#= @statement.issue_tag.map { |t| t.issue_tag } %>
+    <%= raw @statement.issue_tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
     
   </p>
   <p>

@@ -67,14 +67,13 @@
       <div class="form-group">
         <%= f.label :issue_tag, class: "col-lg-3 control-label" %>
         <div class="col-lg-8">
-          <%#= f.text_field :issue_tag, class: "form-control" %>
-          <select name="statement[issue_tag][]"  data-placeholder="Choose a issue tags" class="chosen-select " multiple="multiple" style="width:234px;" value="<%=@statement.issue_tag%>" tabindex="4">
+          <select name="statement[issue_tag_list][]"  data-placeholder="Choose a issue tags" class="chosen-select " value="<%= @statement.issue_tag_list.reverse.join(", ") %>" multiple="multiple" style="width:234px;" tabindex="4">
             <option value=""></option>
             <option value="Transparency">Transparency</option>
-            <option value="Lobbyists ">Lobbyists </option>
+            <option value="Lobbyists">Lobbyists</option>
             <option value="Super PACs">Super PACs</option>
             <option value="Citizen Funded Elections">Citizen Funded Elections</option>
-            <option value="Redistricting/Voting Reform">ARedistricting/Voting Reform</option>
+            <option value="Redistricting/Voting Reform">Redistricting/Voting Reform</option>
             <option value="FEC Enforcement">FEC Enforcement</option>
           </select>
         </div>
@@ -169,7 +168,7 @@
 <% end %>
 
 <script type="text/javascript">
-  var items = <%= raw @statement.issue_tag.present? ? @statement.issue_tag : [] %>;
+  var items = <%= raw @statement.issue_tag_list.present? ? @statement.issue_tag_list.to_json : [] %>;
   for (i=0; i<items.length; i++){
     $(".chosen-select option").each(function(){
         if(items[i]== $(this).text()){

@@ -31,6 +31,7 @@ class Statement < ActiveRecord::Base
   attr_reader :user_name, :event_name, :campaign_name, :candidate_name
   validate :validate_statement?
   acts_as_taggable
+  acts_as_taggable_on :issue_tag
   
   
   def user_name

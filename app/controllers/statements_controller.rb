@@ -53,7 +53,7 @@ class StatementsController < ApplicationController
   # PATCH/PUT /statements/1.json
   def update
     respond_to do |format|
-      if @statement.update(statement_params)
+      if @statement.update(statement_params.merge!(issue_tag_list: statement_params["issue_tag_list"].join(", ")))
         format.html { redirect_to @statement, notice: 'Statement was successfully updated.' }
         format.json { render :show, status: :ok, location: @statement }
       else
@@ -98,7 +98,7 @@ class StatementsController < ApplicationController
                                         :youtube_url,
                                         :third_party_url,
                                         :tag_list,
-                                        :issue_tag=> [],
+                                        :issue_tag_list=>[],
                                         user_attributes: [:first_name, :last_name, :email, :mobile_phone, :postal_code])
     end
 end
