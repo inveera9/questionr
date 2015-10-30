@@ -98,6 +98,7 @@ class StatementsController < ApplicationController
                                         :youtube_url,
                                         :third_party_url,
                                         :tag_list,
+                                        :issue_tag=> [],
                                         user_attributes: [:first_name, :last_name, :email, :mobile_phone, :postal_code])
     end
 end

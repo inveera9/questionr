@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'chosen.jquery.min', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag 'chosen', 'data-turbolinks-track' => true %>
 <%= form_for(@statement, html: { class: "form-horizontal" }) do |f| %>
   <% if @statement.errors.any? %>
 		<div class="alert alert-dismissible alert-danger col-lg-12">
@@ -60,6 +62,21 @@
         <div class="col-lg-8">
           <%= f.text_area :tag_list, class: "form-control", value: @statement.tag_list.reverse.join(", ") %>
           <span>Tags should be separated by commas.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :issue_tag, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%#= f.text_field :issue_tag, class: "form-control" %>
+          <select name="statement[issue_tag][]"  data-placeholder="Choose a issue tags" class="chosen-select " multiple="multiple" style="width:234px;" value="<%=@statement.issue_tag%>" tabindex="4">
+            <option value=""></option>
+            <option value="Transparency">Transparency</option>
+            <option value="Lobbyists ">Lobbyists </option>
+            <option value="Super PACs">Super PACs</option>
+            <option value="Citizen Funded Elections">Citizen Funded Elections</option>
+            <option value="Redistricting/Voting Reform">ARedistricting/Voting Reform</option>
+            <option value="FEC Enforcement">FEC Enforcement</option>
+          </select>
         </div>
       </div>
       <div class="form-group">
@@ -150,3 +167,25 @@
     </fieldset>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  var items = <%= raw @statement.issue_tag.present? ? @statement.issue_tag : [] %>;
+  for (i=0; i<items.length; i++){
+    $(".chosen-select option").each(function(){
+        if(items[i]== $(this).text()){
+          $(this).attr("selected","selected");
+        }
+    });
+  }
+  var config = {
+    '.chosen-select'           : {},
+    '.chosen-select-deselect'  : {allow_single_deselect:true},
+    '.chosen-select-no-single' : {disable_search_threshold:10},
+    '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+    '.chosen-select-width'     : {width:"95%"}
+  }
+  for (var selector in config) {
+    $(selector).chosen(config[selector]);
+  }
+
+  </script>

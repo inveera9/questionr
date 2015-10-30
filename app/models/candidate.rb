@@ -59,4 +59,8 @@ class Candidate < ActiveRecord::Base
     c = self.campaign
     c ? c.official_url : ''
   end
+
+  def self.approved_videos
+    self.includes(:statements).where("approved =?",true)
+  end
 end

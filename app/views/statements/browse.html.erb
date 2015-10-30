@@ -12,12 +12,15 @@
   <%= render partial: "search_form" %>
 </div>
 <div class="container">
-  <%= render 'videos' %>
+  <%#= render 'videos' %>
 </div>
 
 <script>
-  $('#event-day-date').datetimepicker({
-    format: 'MM/DD/YYYY'
+  $('#from-date').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+  $('#to-date').datetimepicker({
+    format: 'DD/MM/YYYY'
   });
   $(document).ready(function(){
     $("#advance-search-btn").on('click',function(e){

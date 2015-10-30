@@ -56,6 +56,11 @@
     
   </p>
   <p>
+    <strong>Issue Tag:</strong>
+    <%#= @statement.issue_tag.map { |t| t.issue_tag } %>
+    
+  </p>
+  <p>
     <strong>Approved:</strong>
     <%= @statement.approved %>
   </p>
