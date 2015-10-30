@@ -1,5 +1,6 @@
 
 /*new css start*/
+.thans{padding: 0 !important;}
 #errorMessage{display:none; margin: 0; text-align: center;}
 .ansbgq{background:#ecf0f1; padding:10px;  border:solid 1px #ccc; margin-bottom: 25px;}
 .candbgq1 {
@@ -93,3 +94,18 @@ and (max-device-width : 1024px)  {
     margin-top: 13px;
   }
 }
+
+
+.form-group div ul {
+    margin: 0 !important;
+    border-radius: 4px  !important;
+    overflow: hidden !important;
+    padding: 5px !important;
+    position: relative !important;
+    width: 100% !important;
+    border: 2px solid #dce4ec !important;
+    cursor: text !important;
+    box-shadow: none !important;
+    background-image: inherit !important;
+}
+
