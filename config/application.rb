@@ -81,3 +81,4 @@ Resque.redis = REDIS
 
 PG_MAX_INT = 2147483647
 SUPPORTED_HTML_TAGS = %w(h3 h4 h5 h6 a p em strong br ol ul li)
+ISSUE_TAGS =["Transparency","Lobbyists","Super PACs","Citizen Funded Elections","Redistricting/Voting Reform","FEC Enforcement"]

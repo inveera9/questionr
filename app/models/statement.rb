@@ -64,9 +64,9 @@ class Statement < ActiveRecord::Base
     self.event_day ? self.event_day.date : self.created_at 
   end
   
-  def self.advance_search(candidate_name,location,from,to)
+  def self.advance_search(candidate_name,location,from,to,iss_tag)
     statements = Statement.approved
-    statements.select{|statement| ((statement.candidate.present? && candidate_name.present?) ? (statement.candidate.person_name.to_s.downcase.include? candidate_name.to_s.downcase) : false )or (statement.event_day.present? ? ( (statement.event_day.event.venue.try(:name).to_s.downcase.include? location.to_s.downcase) or(statement.date_range(from,to,statement.event_day.date.strftime("%d/%m/%Y")))) : false)}.uniq
+    statements.select{|statement| ((statement.candidate.present? && candidate_name.present?) ? (statement.candidate.person_name.to_s.downcase.include? candidate_name.to_s.downcase) : false )or (statement.event_day.present? ? ( (statement.event_day.event.venue.try(:name).to_s.downcase.include? location.to_s.downcase) or(statement.date_range(from,to,statement.event_day.date.strftime("%d/%m/%Y")))) : false) or statement.issue_tag_list.include?(iss_tag)}.uniq
   end
 
   def self.tag_search(tag_params)

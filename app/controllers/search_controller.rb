@@ -3,13 +3,13 @@ class SearchController < ApplicationController
   
   def search
     @videos = []
-    @videos = Statement.advance_search(params[:q],params[:v],params[:from],params[:to])
+    @videos = Statement.advance_search(params[:q],params[:v],params[:from],params[:to],params[:i_tag])
     @videos = Statement.tag_search(params[:t]) if params[:t].present?
   end
   
   private
     def check_params
-      if params[:q].present? || params[:v].present? || params[:from].present? || params[:to].present?
+      if params[:q].present? || params[:v].present? || params[:from].present? || params[:to].present? || params[:i_tag].present?
         true
       else
         false 

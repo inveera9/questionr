@@ -67,15 +67,7 @@
       <div class="form-group">
         <%= f.label :issue_tag, class: "col-lg-3 control-label" %>
         <div class="col-lg-8">
-          <select name="statement[issue_tag_list][]"  data-placeholder="Choose a issue tags" class="chosen-select " value="<%= @statement.issue_tag_list.reverse.join(", ") %>" multiple="multiple" style="width:234px;" tabindex="4">
-            <option value=""></option>
-            <option value="Transparency">Transparency</option>
-            <option value="Lobbyists">Lobbyists</option>
-            <option value="Super PACs">Super PACs</option>
-            <option value="Citizen Funded Elections">Citizen Funded Elections</option>
-            <option value="Redistricting/Voting Reform">Redistricting/Voting Reform</option>
-            <option value="FEC Enforcement">FEC Enforcement</option>
-          </select>
+          <%= select_tag "statement[issue_tag_list][]", options_for_select(ISSUE_TAGS), class: "chosen-select", value: @statement.issue_tag_list.reverse.join(", "), multiple: "multiple", style: "width:234px;" %>
         </div>
       </div>
       <div class="form-group">

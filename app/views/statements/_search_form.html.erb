@@ -40,12 +40,19 @@
               </div>
             </div>
             <div class="row advance-search-block search-inactive" >
-              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frm-padmar">
+              <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 frm-padmar">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-12 adnwstdnt">Candidate Name</label>
                   <div class="col-sm-12">
-                    <%=select_tag 'q', options_for_select(Candidate.approved_videos.map{ |u| [u.person_name, u.person_name] }), class: "form-control" %>
-                    <!-- <input name="q" type="text" class="form-control" placeholder="Candidate Name"/> -->
+                    <%=select_tag 'q', options_for_select(Candidate.approved_videos.map{ |u| [u.person_name, u.person_name] }), class: "form-control" , :include_blank => 'Select Candidate' %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 frm-padmar">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-12 adnwstdnt">Issue Tag</label>
+                  <div class="col-sm-12">
+                    <%= select_tag(:i_tag, options_for_select(ISSUE_TAGS), class: "form-control", :include_blank => 'Select Issue Tag') %>
                   </div>
                 </div>
               </div>
@@ -79,7 +86,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-2 col-sm-6 col-xs-12 frm-padmar">
+              <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 frm-padmar">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-12">Venues</label>
                   <div class="col-sm-12">
