@@ -57,4 +57,8 @@ module SearchHelper
   def date_range(from,to,statement)
     statement.event_day.present? ? (from.to_date..to.to_date).to_a.map{|d| d.strftime("%d/%m/%Y")}.include?(statement.event_day.date.strftime("%d/%m/%Y")) : false
   end
+
+  def candidate_list
+    Candidate.approved_videos.map{ |u| [u.person_name, u.person_name] }
+  end
 end
