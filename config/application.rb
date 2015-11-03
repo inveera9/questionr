@@ -42,9 +42,9 @@ module NhrQuestioner
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
     # authenticate against these hardcoded values for resque web access
     config.middleware.use ResqueAuth do |username, password|
-      username == "john.inveera" and password == "test!234"
+      username == "questionr" and password == "r00tstr1k3"
     end
-    config.janrain_api_url = URI.parse "https://inveera-questionr.rpxnow.com/api/v2/auth_info"
+    config.janrain_api_url = URI.parse "https://questionr.rpxnow.com/api/v2/auth_info"
     
     config.janrain_api_key = ENV['JANRAIN_API_KEY']
     config.janrain_token_url = "#{ENV['URL']}/user/social_auth"
