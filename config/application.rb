@@ -42,10 +42,9 @@ module NhrQuestioner
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
     # authenticate against these hardcoded values for resque web access
     config.middleware.use ResqueAuth do |username, password|
-      username == "questionr" and password == "r00tstr1k3"
+      username == "questionr" and password == ENV['RESQUE_ADMIN_PASSWORD']
     end
     config.janrain_api_url = URI.parse "https://questionr.rpxnow.com/api/v2/auth_info"
-    
     config.janrain_api_key = ENV['JANRAIN_API_KEY']
     config.janrain_token_url = "#{ENV['URL']}/user/social_auth"
 
@@ -74,11 +73,10 @@ class << AMERICA_NEW_YORK_TIME_ZONE
     "#{t.strftime('%B %-d, %Y')}"
   end
 end
-Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']
+
 #set up connections to external services
 REDIS = Redis.new url: ENV['REDISTOGO_URL']
 Resque.redis = REDIS
 
 PG_MAX_INT = 2147483647
 SUPPORTED_HTML_TAGS = %w(h3 h4 h5 h6 a p em strong br ol ul li)
-ISSUE_TAGS =["Transparency","Lobbyists","Super PACs","Citizen Funded Elections","Redistricting/Voting Reform","FEC Enforcement"]
