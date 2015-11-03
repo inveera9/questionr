@@ -53,7 +53,7 @@ class StatementsController < ApplicationController
   # PATCH/PUT /statements/1.json
   def update
     respond_to do |format|
-      merged_params = params[:issue_tag_list].present? ? statement_params.merge!(issue_tag_list: statement_params["issue_tag_list"].join(", ")) : statement_params.merge!(issue_tag_list: [])
+      merged_params = params[:statement][:issue_tag_list].present? ? statement_params.merge!(issue_tag_list: statement_params["issue_tag_list"].join(", ")) : statement_params.merge!(issue_tag_list: [])
       if @statement.update(merged_params)
         format.html { redirect_to @statement, notice: 'Statement was successfully updated.' }
         format.json { render :show, status: :ok, location: @statement }
