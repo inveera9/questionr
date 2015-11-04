@@ -75,7 +75,7 @@ class Statement < ActiveRecord::Base
   end
 
   def date_range(from,to,date)
-    (from.empty? && to.empty?) ? false : (from.to_date..to.to_date).to_a.map{|d| d.strftime("%d/%m/%Y")}.include?(date)
+    (from.empty? || to.empty?) ? false : (from.to_date..to.to_date).to_a.map{|d| d.strftime("%d/%m/%Y")}.include?(date)
   end
   
   private
