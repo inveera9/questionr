@@ -55,7 +55,7 @@ module SearchHelper
   end
 
   def date_range(from,to,statement)
-    statement.date.present? ? (from.to_date..to.to_date).to_a.map{|d| d.strftime("%d/%m/%Y")}.include?(statement.date.strftime("%d/%m/%Y")) : false
+    (from.to_date..to.to_date).to_a.map{|d| d.strftime("%d/%m/%Y")}.include?(statement.date.strftime("%d/%m/%Y"))
   end
 
   def candidate_list
