@@ -22,7 +22,35 @@
   $('#to-date').datetimepicker({
     format: 'DD/MM/YYYY'
   });
+
+  function checkdate(){
+    if (($('#from_date').val().length > 5 && $('#to_date').val().length > 5)){
+      var start_date = $('#from_date').val().split("/");
+      var end_date = $('#to_date').val().split("/");
+      var s_date = start_date[1] +"/"+ start_date[0] +"/"+ start_date[2]
+      var e_date = end_date[1] +"/"+ end_date[0] +"/"+ end_date[2]
+      var new_start_date = new Date(s_date)
+      var new_end_date = new Date(e_date)
+      if(new_start_date < new_end_date){
+        return true;
+      }else{
+        alert("please select end date greater than start date");
+        return false;
+      }
+    }else if($('#from_date').val().length > 5){
+      alert("please select end date");
+      return false;
+    }else if($('#to_date').val().length > 5){
+      alert("please select start date");
+      return false;
+    }else{
+      return false;
+    }
+  }
+
   $(document).ready(function(){
+    
+    
     $("#advance-search-btn").on('click',function(e){
       e.preventDefault();
       $('.tag-search-block').removeClass('search-active');
