@@ -64,9 +64,9 @@
             </table>
           </div>
           <p><%= raw(sanitize(@candidate.description, tags: SUPPORTED_HTML_TAGS)) %></p>
-          <h3>See More Answers From <%= @candidate.person_name %></h3>
+          <!-- <h3>See More Answers From <%= @candidate.person_name %></h3> -->
         </div>
-        <div class="col-lg-2 candbgq5">Search By: </div>
+        <!-- <div class="col-lg-2 candbgq5">Search By: </div>
         <div class="col-lg-3 candbgq5">Candidate Name<br>
           <input type="text" placeholder="Hillary Clinton" class="form-control candbgq6"> 
         </div>
@@ -81,12 +81,12 @@
         </div>
         <div class="col-lg-1 candbgq5">
           <input type="submit" class="btn btn-info candbgq8" value="Go">
-        </div>
+        </div> -->
       </div>
       <div class="col-lg-4">
         <%= render 'events', :panel_title => 'Upcoming Events', :events => @candidate.upcoming_events %>
         <%= render 'most_recent_videos', :videos => @videos %>
-        <div class="panel panel-primary">
+        <!-- <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Most Recent Transcript of Candidate</h3>
           </div>
@@ -96,7 +96,7 @@
               <li class="list-group-item" style="border: 0">October 13, 2015: <a href="#">Town Hall: John Kasich </a></li>
             </ul>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
