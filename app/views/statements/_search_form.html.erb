@@ -20,7 +20,7 @@
       <div class="panel panel-default">
         
         <div class="panel-body martp2">
-          <%= form_tag("/search", :method=>"get") do %>
+          <%= form_tag("/search", :method=>"get", onsubmit: "return checkdate()") do %>
             <div class="row tag-search-block">
               <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frm-padmar">
                 <div class="form-group">
@@ -97,7 +97,7 @@
               <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 frm-padmar">
                 <div class="form-group">
                   <div class="col-sm-12">
-                    <input type="submit" value="Search" class="btn btn-info martp"/>
+                    <input type="submit" value="Search" class="btn btn-info martp" id="search-btn" />
                  </div>
                </div>
               </div>
