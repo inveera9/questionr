@@ -4,10 +4,14 @@
   </div>
   <div class="panel-body">
     <ul class="list-group">
-    <% videos.limit(3).each do |video| %>
-      <li style="border: 0" class="list-group-item">
-        <%= video.event_day.date.strftime("%B %d, %Y") if video.event_day.present? %> : <%= link_to video.title, video.youtube_url, target: "_blank" %>
-      </li>
+    <% if videos.blank? %>
+      <li style="border: 0" class="list-group-item">No Recent Videos.</li>
+    <% else %>
+      <% videos.limit(3).each do |video| %>
+        <li style="border: 0" class="list-group-item">
+          <%= video.date.strftime("%B %d, %Y") if video.date.present? %> : <%= link_to video.title, video.youtube_url, target: "_blank" %>
+        </li>
+      <% end %>
     <% end %>
     </ul>
   </div>
@@ -18,13 +22,17 @@
   </div>
   <div class="panel-body">
     <ul class="list-group">
-      <% count = 0 %>
-      <% present_transcript.each do |video| %>
-        <% count = +1 %>
-        <% break if count >=3 %>
-        <li style="border: 0" class="list-group-item">
-          <%= video.date.strftime("%B %d, %Y") %> : <%= link_to video.transcript, video.youtube_url, target: "_blank" %>
-        </li>
+      <% if present_transcript.blank? %>
+        <li style="border: 0" class="list-group-item">No Recent Transcript.</li>
+      <% else %>
+        <% count = 0 %>
+        <% present_transcript.each do |video| %>
+          <% count = +1 %>
+          <% break if count >=3 %>
+          <li style="border: 0" class="list-group-item">
+            <%= video.date.strftime("%B %d, %Y") %> : <%= link_to video.transcript, video.youtube_url, target: "_blank" %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
