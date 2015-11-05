@@ -4,7 +4,6 @@
     <%= notice %>
   </div>
 <% end %>
-
 <% if params[:search].eql? "videos" %>
   <% if @videos.size > 0 %>
     <div class="col-lg-12">
@@ -13,28 +12,92 @@
     </div>
   <% end %>
 <% else %>
-  <div class="well bs-component col-lg-12">
-    <div class="col-lg-3">
-      <%= image_tag @candidate.person_image_url, { width: '300px' } %>
+  <div class="container-fluid" id="content">
+    <div class="well bs-component col-lg-12">
+      <div class="col-lg-8">
+        <div class="candbgq9">
+          <div class="col-lg-3">
+            <%= image_tag @candidate.person_image_url, { width: '160px' } %>
+          </div>
+          <div class="col-lg-9" >
+            <h1><%= @candidate.person_name %></h1>
+            <h4><%= @candidate.person_title %></h4>
+            <h4><%= @candidate.party %></h4>
+            <h4><%= @candidate.official_url ? link_to('Official Web Site', @candidate.official_url) : '' %>
+            </h4>
+          </div>
+        </div>
+        <div class="col-lg-12 candbgq2">
+          <h3>Position on Reform</h3>
+          <div class="candbgq11">
+            <table class="table table-striped table-responsive table-bordered">
+              <tbody>
+                <tr>
+                  <td class="candbgq3">TOPIC 1</td>
+                  <td valign="middle" align="center" class="candbgq3">TOPIC 2</td>
+                  <td valign="middle" align="center" class="candbgq3">TOPIC 3</td>
+                  <td valign="middle" align="center" class="candbgq3">TOPIC 4</td>
+                  <td valign="middle" align="center" class="candbgq3">TOPIC 5</td>
+                  <td valign="middle" align="center" class="candbgq3">TOPIC 6</td>
+                </tr>
+                <tr>
+                  <td align="center" valign="middle" class="candbgq10">
+                    <div class="ciclq_green"></div>
+                  </td>
+                  <td valign="middle" align="center"class="candbgq10">
+                    <div class="ciclq_green"></div>
+                  </td>
+                  <td valign="middle" align="center"class="candbgq10">
+                    <div class="ciclq_red"></div>
+                  </td>
+                  <td valign="middle" align="center"class="candbgq10">
+                    <div class="ciclq_gray"></div>
+                  </td>
+                  <td valign="middle" align="center"class="candbgq10">
+                    <div class="ciclq_red"></div>
+                  </td>
+                  <td valign="middle" align="center"class="candbgq10">
+                    <div class="ciclq_green"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p><%= raw(sanitize(@candidate.description, tags: SUPPORTED_HTML_TAGS)) %></p>
+          <!-- <h3>See More Answers From <%= @candidate.person_name %></h3> -->
+        </div>
+        <!-- <div class="col-lg-2 candbgq5">Search By: </div>
+        <div class="col-lg-3 candbgq5">Candidate Name<br>
+          <input type="text" placeholder="Hillary Clinton" class="form-control candbgq6"> 
+        </div>
+        <div class="col-lg-2 candbgq5">Topic <br>
+          <input type="text" placeholder="All" class="form-control candbgq7"> 
+        </div>
+        <div class="col-lg-2 candbgq5">State <br>
+          <input type="text" placeholder="All" class="form-control candbgq7"> 
+        </div>
+        <div class="col-lg-2 candbgq5">Date <br>
+          <input type="text" placeholder="All" class="form-control candbgq7"> 
+        </div>
+        <div class="col-lg-1 candbgq5">
+          <input type="submit" class="btn btn-info candbgq8" value="Go">
+        </div> -->
+      </div>
+      <div class="col-lg-4">
+        <%= render 'events', :panel_title => 'Upcoming Events', :events => @candidate.upcoming_events %>
+        <%= render 'most_recent_videos', :videos => @videos %>
+        <!-- <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Most Recent Transcript of Candidate</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item" style="border: 0">October 5, 2015: <a href="#">Early Childhood Education Conference: Hillary Clinton </a></li>
+              <li class="list-group-item" style="border: 0">October 13, 2015: <a href="#">Town Hall: John Kasich </a></li>
+            </ul>
+          </div>
+        </div> -->
+      </div>
     </div>
-    <div class="col-lg-5">
-      <h1><%= @candidate.person_name %></h1>
-      <h4>
-        <%= @candidate.person_title %>
-      </h4>
-      <h4>
-        <%= @candidate.party %> 
-      </h4>
-      <h4>
-        <%= @candidate.official_url ? link_to('Official Web Site', @candidate.official_url) : '' %>
-      </h4>
-      <p><%= raw(sanitize(@candidate.description, tags: SUPPORTED_HTML_TAGS)) %></p>
-    </div>
-    <div class="col-lg-4">
-      <%= render 'events', :panel_title => 'Upcoming Events', :events => @candidate.upcoming_events %>
-    </div>
-    <ul class="pager col-lg-12">
-      <% if @current_user.admin? %><li class="next"><%= link_to 'Edit →', edit_candidate_path(@candidate) %></li><% end %>
-    </ul>
   </div>
 <% end %>
