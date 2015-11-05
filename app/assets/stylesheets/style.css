@@ -108,4 +108,6 @@ and (max-device-width : 1024px)  {
     box-shadow: none !important;
     background-image: inherit !important;
 }
-
+.search-error-msg{
+  color: #e74c3c;
+}
