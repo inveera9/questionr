@@ -111,3 +111,34 @@ and (max-device-width : 1024px)  {
 .search-error-msg{
   color: #e74c3c;
 }
+
+.bl-hid{list-style: none; margin: 0px; padding: 0px;}
+.mpd{ margin: 0px 0px 0px 0px !important; padding: 0px !important;}
+.mpd-btm{line-height: 40px;}
+.lb-tx{font-size: 10px;}
+.issue-trans{
+display: block;
+height: 30px;
+width: 100%;
+line-height: 1.42857;
+color: #2C3E50;
+background-color: #FFF;
+background-image: none;
+border: 1px solid #DCE4EC;
+border-radius: 4px;
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;}
+.ulpx{
+    background: #e7ebec;
+    border: 1px solid #ccc;
+    margin: 8px !important;
+    padding: 5px !important;
+    list-style: none; 
+    margin: 0px; 
+    padding: 0px;
+  }
+.issue-trans[disabled]{
+  cursor: not-allowed;
+  background-color: #ecf0f1;
+  opacity: 1;
+}
