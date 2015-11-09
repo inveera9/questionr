@@ -1,0 +1,45 @@
+<% if notice || alert %>
+<div class="alert alert-dismissible alert-<%=notice ? 'success' : 'danger'%> col-lg-12">
+ <button type="button" class="close" data-dismiss="alert">×</button>
+ <%= notice || alert %>
+</div>
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="clearfix"></div>
+      <div class="col-lg-12 frm-padmar2" style="margin-top: 20px">
+        <div class="no-result-found alert alert-danger col-lg-12" style="display: none;">Sorry, We didn't find any result.
+          <button type="button" class="close" data-dismiss="alert">×</button>
+        </div>
+      </div>
+    </div>
+  <div>
+</div>
+<div>
+  <div class="container" id="searchResult">
+    <div class="row">
+      <div class="clearfix"></div>
+      <div class="col-lg-12 frm-padmar2" style="margin-top: 20px">
+        <% if @videos.blank? %>
+          <div class="warning">Sorry, We didn't find any result.</div>
+        <% else %>
+          <div id="video-answers" class="row">
+            <% @videos.each do |statement| %>
+              <% if candidate_filter(statement) %>
+                <%= render partial: 'search_result', locals: {video: statement} %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> 
+  <%= link_to "Back to candidate profile",candidate_path(params[:id])%>
+</div>
+<script>
+  if($(".search_row").length==0){
+    $('#searchResult').hide();
+    $('.no-result-found').show();
+  }
+</script>

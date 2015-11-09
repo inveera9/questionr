@@ -55,40 +55,39 @@
             </table>
           </div>
           <p><%= raw(sanitize(@candidate.description, tags: SUPPORTED_HTML_TAGS)) %></p>
-          <!-- <h3>See More Answers From <%= @candidate.person_name %></h3> -->
+          <h3>See More Answers From <%= @candidate.person_name %></h3>
         </div>
-        <!-- <div class="col-lg-2 candbgq5">Search By: </div>
-        <div class="col-lg-3 candbgq5">Candidate Name<br>
-          <input type="text" placeholder="Hillary Clinton" class="form-control candbgq6"> 
-        </div>
-        <div class="col-lg-2 candbgq5">Topic <br>
-          <input type="text" placeholder="All" class="form-control candbgq7"> 
-        </div>
-        <div class="col-lg-2 candbgq5">State <br>
-          <input type="text" placeholder="All" class="form-control candbgq7"> 
-        </div>
-        <div class="col-lg-2 candbgq5">Date <br>
-          <input type="text" placeholder="All" class="form-control candbgq7"> 
-        </div>
-        <div class="col-lg-1 candbgq5">
-          <input type="submit" class="btn btn-info candbgq8" value="Go">
-        </div> -->
+        <div class="col-lg-2 candbgq5">Search By: </div>
+        <%= form_tag("/search_candidate", :method=>"get") do %>
+          <div class="col-lg-2 candy1">Candidate Name<br>
+            <%=text_field_tag 'candidate_name', @candidate.person_name, class: "form-control candbgq6" %>
+          </div>
+          <div class="col-lg-2 candy1">Topic <br>
+            <%= select_tag(:candidate_issue, options_for_select(ISSUE_TAGS), class: "form-control candbgq7", :include_blank => 'All') %> 
+          </div>
+          <div class="col-lg-2 candy1">State <br>
+            <input name="state" type="text" placeholder="All" class="form-control candbgq7"> 
+          </div>
+          <div class="col-lg-2 candy1">Date <br>
+            <input name="date" type="text" class="datepicker form-control candbgq7" placeholder="All" id="date"/>
+          </div>
+          <%= hidden_field_tag "id", @candidate.id %>
+          <div class="col-lg-2 candbgq5">
+            <input type="submit" class="btn btn-info candbgq8" value="Go">
+          </div>
+        <% end %>
       </div>
       <div class="col-lg-4">
         <%= render 'events', :panel_title => 'Upcoming Events', :events => @candidate.upcoming_events %>
         <%= render 'most_recent_videos', :videos => @videos %>
-        <!-- <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Most Recent Transcript of Candidate</h3>
-          </div>
-          <div class="panel-body">
-            <ul class="list-group">
-              <li class="list-group-item" style="border: 0">October 5, 2015: <a href="#">Early Childhood Education Conference: Hillary Clinton </a></li>
-              <li class="list-group-item" style="border: 0">October 13, 2015: <a href="#">Town Hall: John Kasich </a></li>
-            </ul>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $('#date').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+</script>
+

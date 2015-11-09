@@ -19,7 +19,7 @@
 .candbgq5{margin:0px; padding:0px;}
 .candbgq6{width:85%; margin-top:6px;}
 .candbgq7{width:65%; margin-top:6px;}
-.candbgq8{width:100%; margin-top:28px; margin-bottom:28px;}
+.candbgq8{width:100%; margin-top:28px; margin-bottom:28px !important;}
 .candbgq9{background:#fff; padding:10px 10px 0px 0px; overflow:hidden}
 .candbgq10{border:solid 2px #ccc !important; border-top:none !important; background:#fff !important;}
 .candbgq11{/*width:100%; overflow-x:scroll;*/}
@@ -142,3 +142,4 @@ transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;}
   background-color: #ecf0f1;
   opacity: 1;
 }
+.candy1{margin:0px !important; padding:0px 10px 0px 0px !important;}
