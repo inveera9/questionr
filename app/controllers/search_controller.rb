@@ -6,6 +6,11 @@ class SearchController < ApplicationController
     @videos = Statement.advance_search(params[:q],params[:v],params[:from],params[:to],params[:i_tag])
     @videos = Statement.tag_search(params[:t]) if params[:t].present?
   end
+
+  def search_candidate
+    @candidate = Candidate.includes(:campaign).find(params[:id])
+    @videos = @candidate.statements.approved
+  end
   
   private
     def check_params

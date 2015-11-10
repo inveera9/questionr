@@ -4,9 +4,13 @@
       </div>
       <div class="panel-body">
         <ul class="list-group">
-        <% events.each do |event| %>
-          <li style="border: 0" class="list-group-item"><%= AMERICA_NEW_YORK_TIME_ZONE.format_date(event.start_time)%>: <%= link_to event.title, event %></li>
-        <% end %>
+          <% if events.blank? %>
+            <li style="border: 0" class="list-group-item">No Upcoming Events.</li>
+          <% else %>
+            <% events.each do |event| %>
+              <li style="border: 0" class="list-group-item"><%= AMERICA_NEW_YORK_TIME_ZONE.format_date(event.start_time)%>: <%= link_to event.title, event %></li>
+            <% end %>
+          <% end %>
         </ul>
       </div>
     </div>

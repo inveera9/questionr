@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'users#logout_admin', as: :logout
 
   get 'search' => 'search#search'
+  get 'search_candidate' => 'search#search_candidate'
   post 'user/social_auth' => 'users#social_auth'
   resources :users
   get 'statements/browse' => 'statements#browse'

@@ -42,6 +42,34 @@ module SearchHelper
     end
   end
 
+  def candidate_filter(statement)
+    #if all params present
+    if params[:candidate_name].present? && params[:candidate_issue].present? && params[:state].present? && params[:date].present?
+      statement.issue_tag_list.include?(params[:candidate_issue]) and statement.date.strftime("%d/%m/%Y").include? params[:date] and venue(statement) && (statement.event_day.event.venue.state.downcase.include? params[:state].downcase)
+    #if any three params present
+    elsif params[:candidate_name].present? && params[:candidate_issue].present? && params[:state].present?
+      statement.issue_tag_list.include?(params[:candidate_issue]) and venue(statement) && (statement.event_day.event.venue.state.downcase.include? params[:state].downcase)
+    elsif params[:candidate_name].present? && params[:candidate_issue].present? && params[:date].present?
+      statement.issue_tag_list.include?(params[:candidate_issue]) and statement.date.strftime("%d/%m/%Y").include? params[:date]
+    elsif params[:candidate_name].present? && params[:state].present? && params[:date].present?
+      statement.date.strftime("%d/%m/%Y").include? params[:date] and venue(statement) && (statement.event_day.event.venue.state.downcase.include? params[:state].downcase)
+  
+    #if any two params present
+    elsif params[:candidate_name].present? && params[:candidate_issue].present?
+      statement.issue_tag_list.include?(params[:candidate_issue])
+    elsif params[:candidate_name].present? && params[:state].present?
+      venue(statement) && (statement.event_day.event.venue.state.downcase.include? params[:state].downcase)
+    elsif params[:candidate_name].present? && params[:date].present?
+      statement.date.strftime("%d/%m/%Y").include? params[:date]
+    #if any one params present
+    elsif params[:candidate_name].present?
+      true
+    else
+      false
+    end
+  end
+
+
   def venue(statement)
     statement.event_day.present? && statement.event_day.event.present? && statement.event_day.event.venue.present?
   end
@@ -55,7 +83,7 @@ module SearchHelper
   end
 
   def date_range(from,to,statement)
-    statement.event_day.present? ? (from.to_date..to.to_date).to_a.map{|d| d.strftime("%d/%m/%Y")}.include?(statement.event_day.date.strftime("%d/%m/%Y")) : false
+    (from.to_date..to.to_date).to_a.map{|d| d.strftime("%d/%m/%Y")}.include?(statement.date.strftime("%d/%m/%Y"))
   end
 
   def candidate_list

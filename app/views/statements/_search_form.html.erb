@@ -20,13 +20,13 @@
       <div class="panel panel-default">
         
         <div class="panel-body martp2">
-          <%= form_tag("/search", :method=>"get") do %>
+          <%= form_tag("/search", :method=>"get", onsubmit: "return checkdate()") do %>
             <div class="row tag-search-block">
               <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 frm-padmar">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-12 adnwstdnt">Tags</label>
                   <div class="col-sm-12">
-                    <input name="t" type="text" class="form-control" placeholder="Tags"/>
+                    <input name="t" type="text" class="form-control" placeholder="Tags" id="tag_input"/>
                   </div>
                 </div>
               </div>
@@ -62,7 +62,7 @@
                     <div id="from-date" class="col-sm-12 input-group">
                       <label for="inputEmail3" class="col-sm-12 thans">Event Date</label>
                       <div class='input-group date'>
-                      <input name="from" type="text" class="datepicker form-control" placeholder="From" id="from_date"/>
+                      <input name="from" type="text" class="datepicker form-control" placeholder="Start date" id="from_date"/>
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                       </span>
@@ -77,7 +77,7 @@
                     <div id="to-date" class="col-sm-12 input-group">
                       <label for="inputEmail3" class="col-sm-12 thans">Event Date</label>
                       <div class='input-group date'>
-                      <input name="to" type="text" class="datepicker form-control" placeholder="To" id="to_date"/>
+                      <input name="to" type="text" class="datepicker form-control" placeholder="End date" id="to_date"/>
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                       </span>
@@ -90,20 +90,96 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-12">Venues</label>
                   <div class="col-sm-12">
-                    <input name="v" type="text" class="form-control" placeholder="Venues"/>
+                    <input name="v" type="text" class="form-control" placeholder="Venues" id="venue_input"/>
                   </div>
                 </div>
               </div>
               <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 frm-padmar">
                 <div class="form-group">
                   <div class="col-sm-12">
-                    <input type="submit" value="Search" class="btn btn-info martp"/>
+                    <input type="submit" value="Search" class="btn btn-info martp" id="search-btn" />
                  </div>
                </div>
               </div>
             </div>
           <% end %>
+          <span class="search-error-msg"></span>
         </div>
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    $('#from-date').datetimepicker({
+      format: 'DD/MM/YYYY'
+    });
+    $('#to-date').datetimepicker({
+      format: 'DD/MM/YYYY'
+    });
+    function checkdate(){
+      var flag = false;
+      if ($("#q").val().length > 0 || $("#i_tag").val().length > 0 || $("#venue_input").val().length > 0 || $("#tag_input").val().length > 0){
+        flag = true;
+      }
+      if (($('#from_date').val().length > 5 && $('#to_date').val().length > 5)){
+        var start_date = $('#from_date').val().split("/");
+        var end_date = $('#to_date').val().split("/");
+        var s_date = start_date[1] +"/"+ start_date[0] +"/"+ start_date[2]
+        var e_date = end_date[1] +"/"+ end_date[0] +"/"+ end_date[2]
+        var new_start_date = new Date(s_date)
+        var new_end_date = new Date(e_date)
+        if(new_start_date < new_end_date){
+          flag = true;
+        }else{
+          $(".search-error-msg").text("Please select end date greater than start date.");
+          flag = false;
+        }
+      }else if($('#from_date').val().length > 5){
+        $(".search-error-msg").text("Please select end date.");
+        flag = false;
+      }else if($('#to_date').val().length > 5){
+        $(".search-error-msg").text("Please select start date.");
+        flag = false;
+      }else{
+        flag = true;
+      }
+      if (($("#q").val().length == 0 && $("#i_tag").val().length == 0 && $("#venue_input").val().length == 0 && $('#from_date').val().length == 0 && $('#to_date').val().length == 0)){
+        if ($('#tag_input').val().length == 0){
+          $(".search-error-msg").text("Please provide desired search paramenter.")
+          flag = false;
+        }else{
+          flag = true;
+        }
+      }
+      return flag;
+    }
+    $(document).ready(function(){
+      $("#advance-search-btn").on('click',function(e){
+        e.preventDefault();
+        $('.tag-search-block').removeClass('search-active');
+        $('.tag-search-block').addClass('search-inactive');
+        $('.advance-search-block').addClass('search-active');
+        $("#advance-search-btn").addClass('acor-tab-btn');
+        $("#advance-search-btn").removeClass('acor-tab-btn2');
+        $("#tag-search-btn").removeClass("acor-tab-btn");
+        $("#tag-search-btn").addClass("acor-tab-btn2");
+        $('.no-result-found').hide();
+        $('#tag_input').val("")
+      });
+      $("#tag-search-btn").on('click',function(e){
+        e.preventDefault();
+        $("#tag-search-btn").addClass("acor-tab-btn");
+        $("#tag-search-btn").removeClass("acor-tab-btn2");
+        $("#advance-search-btn").addClass('acor-tab-btn2');
+        $("#advance-search-btn").removeClass("acor-tab-btn");
+        $('.tag-search-block').addClass('search-active');
+        $('.advance-search-block').addClass('search-inactive');
+        $('.advance-search-block').removeClass('search-active');
+        $('.no-result-found').hide();
+        $("#q").val("");
+        $("#i_tag").val("");
+        $("#from_date").val("");
+        $("#to_date").val("");
+        $("#venue_input").val("");
+      });
+    });
+  </script>

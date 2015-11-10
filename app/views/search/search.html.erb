@@ -43,7 +43,7 @@
     </div>
   </div>
 </div>
-<% if params[:q].present? || params[:e].present? || params[:v].present? || params[:d].present? %>
+<% if params[:q].present? || params[:e].present? || params[:v].present? || params[:d].present? || params[:i_tag] %>
   <script type="text/javascript">
     $('.tag-search-block').removeClass('search-active');
     $('.tag-search-block').addClass('search-inactive');
@@ -59,34 +59,4 @@
     $('#searchResult').hide();
     $('.no-result-found').show();
   }
-  $('#from-date').datetimepicker({
-    format: 'DD/MM/YYYY'
-  });
-  $('#to-date').datetimepicker({
-    format: 'DD/MM/YYYY'
-  });
-  $(document).ready(function(){
-    $("#advance-search-btn").on('click',function(e){
-      e.preventDefault();
-      $('.tag-search-block').removeClass('search-active');
-      $('.tag-search-block').addClass('search-inactive');
-      $('.advance-search-block').addClass('search-active');
-      $("#advance-search-btn").addClass('acor-tab-btn');
-      $("#advance-search-btn").removeClass('acor-tab-btn2');
-      $("#tag-search-btn").removeClass("acor-tab-btn");
-      $("#tag-search-btn").addClass("acor-tab-btn2");
-      $('.no-result-found').hide();
-    });
-    $("#tag-search-btn").on('click',function(e){
-      e.preventDefault();
-      $("#tag-search-btn").addClass("acor-tab-btn");
-      $("#tag-search-btn").removeClass("acor-tab-btn2");
-      $("#advance-search-btn").addClass('acor-tab-btn2');
-      $("#advance-search-btn").removeClass("acor-tab-btn");
-      $('.tag-search-block').addClass('search-active');
-      $('.advance-search-block').addClass('search-inactive');
-      $('.advance-search-block').removeClass('search-active');
-      $('.no-result-found').hide();
-    });
-  });
 </script>

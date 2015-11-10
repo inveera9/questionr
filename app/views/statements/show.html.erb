@@ -52,6 +52,10 @@
     <%= @statement.third_party_url %>
   </p>
   <p>
+    <strong>Transcript:</strong>
+    <%= @statement.transcript %>
+  </p>
+  <p>
     <strong>Tags:</strong>
     <%= raw @statement.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
     
