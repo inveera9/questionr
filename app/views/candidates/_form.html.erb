@@ -61,7 +61,26 @@
                           'Independent' => 'Independent' }, @candidate.party),
     											{}, { class: "form-control" } %>
         </div>
-      </div>  
+      </div> 
+      <div class="">
+        <label class="col-lg-3 control-label">Issues</label>
+        <div class="col-lg-8 issues mpd mpd-btm issue_tags">
+          <ul class="ulpx">
+            <% ISSUE_TAGS.each do |issue_tag|%>
+              <li>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 mpd ">
+                  <%= check_box_tag("issues[]", issue_tag, (true if @candidate.scaling.keys.include? issue_tag), id: "issue_#{issue_tag}", class: "issue_check") %>
+                  <lable><%=issue_tag %></lable>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 mpd">
+                  <%= select_tag("scaling_#{issue_tag}", options_for_select(SCALE_POINT, @candidate.scaling.select{|k,v| v if k== issue_tag}.values), class: "issue-trans", :include_blank => 'Choose scale point') %>
+                </div>
+              </li>
+              <div class="clearfix"></div>
+            <% end %>
+          </ul>
+        </div>
+      </div>
       <div class="form-group">
         <%= f.label :status, class: "col-lg-3 control-label" %>
         <div class="col-lg-8">
@@ -93,3 +112,29 @@
     </fieldset>
   </div>
 <% end %>
+<script type="text/javascript">
+ 
+  function disabled_checked_issues(){
+    var issues = $(".issue_tags").find("input")
+    var checked_issues = []
+    $.each(issues,function(key,val){
+      var select = $($(val).parent().parent().children()[1]).find("select")
+      if (!($(val).prop("checked"))){
+        select.prop('disabled', true)
+      }
+    });
+  }
+
+  $(document).ready(function(){
+    disabled_checked_issues();
+  });
+
+  $(document).on('click',".issue_check",function(){
+    var select = $($(this).parent().parent().children()[1]).find("select")
+    if ($(this).prop("checked"))
+      select.prop('disabled', false)
+    else
+      select.prop('disabled', true)  
+  });
+
+</script>

@@ -5,16 +5,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    if request.xhr?
-      @people = []
-      all_people = Person.where("lower(first_name) like ? OR lower(last_name) like ?","%#{params[:q].downcase}%", "%#{params[:q].downcase}%")
-      all_people.each do |people|
-        @people << {id: people.id,rwu_id: people.rwu_id , user_name: "#{people.first_name} #{people.last_name}", nickname: people.nickname, middle_name: people.middle_name, suffix: people.suffix, title: people.title, first_name: people.first_name,last_name: people.last_name}
-      end
-      render :json=> @people
-    else
-      @people = Person.all.order(:last_name).order(:first_name).order(:middle_name)
-    end
+    @people = Person.all.order(:last_name).order(:first_name).order(:middle_name)
   end
 
   # GET /people/1

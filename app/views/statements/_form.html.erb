@@ -1,4 +1,5 @@
-<%= javascript_include_tag 'jquery.tokeninput', 'data-turbolinks-track'=>true %>
+<%= javascript_include_tag 'chosen.jquery.min', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag 'chosen', 'data-turbolinks-track' => true %>
 <%= form_for(@statement, html: { class: "form-horizontal" }) do |f| %>
   <% if @statement.errors.any? %>
 		<div class="alert alert-dismissible alert-danger col-lg-12">
@@ -51,6 +52,12 @@
         </div>
       </div>
       <div class="form-group">
+        <%= f.label :transcript, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_area :transcript, class: "form-control", rows: 10 %>
+        </div>
+      </div>
+      <div class="form-group">
         <%= f.label :approved, class: "col-lg-3 control-label" %>
         <div class="col-lg-8 checkbox-left">
           <%= f.check_box :approved, class: "form-control" %>
@@ -59,7 +66,14 @@
       <div class="form-group">
         <%= f.label :tags, class: "col-lg-3 control-label" %>
         <div class="col-lg-8">
-          <%= f.text_field :tag_list, class: "form-control", tag_list_item: @statement.tag_list %>
+          <em>Tags should be separated by commas.</em>
+          <%= f.text_area :tag_list, class: "form-control", value: @statement.tag_list.reverse.join(", ") %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :issue_tag, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= select_tag "statement[issue_tag_list][]", options_for_select(ISSUE_TAGS), class: "chosen-select", value: @statement.issue_tag_list.reverse.join(", "), multiple: "multiple", style: "width:234px;" %>
         </div>
       </div>
       <div class="form-group">
@@ -151,15 +165,24 @@
   </div>
 <% end %>
 
-<script>
-$(document).ready(function () {
-    var items = <%= raw @statement.tag_list.to_json %>;
-    var i=0;
-    var tag_items = [];
-    for (i = 0; i < items.length; i++) {
-      hs = {user_name: items[i]}
-      tag_items.push(hs);
-    }
-    $("#statement_tag_list").tokenInput('/people', { propertyToSearch: 'user_name', preventDuplicates: true, tokenValue: "user_name", prePopulate: tag_items });
-});
-</script>
+<script type="text/javascript">
+  var items = <%= raw @statement.issue_tag_list.present? ? @statement.issue_tag_list.to_json : [] %>;
+  for (i=0; i<items.length; i++){
+    $(".chosen-select option").each(function(){
+        if(items[i]== $(this).text()){
+          $(this).attr("selected","selected");
+        }
+    });
+  }
+  var config = {
+    '.chosen-select'           : {},
+    '.chosen-select-deselect'  : {allow_single_deselect:true},
+    '.chosen-select-no-single' : {disable_search_threshold:10},
+    '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+    '.chosen-select-width'     : {width:"95%"}
+  }
+  for (var selector in config) {
+    $(selector).chosen(config[selector]);
+  }
+
+  </script>

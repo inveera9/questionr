@@ -25,14 +25,15 @@ class Statement < ActiveRecord::Base
   default_scope { includes(:event_day).order("event_days.date desc").order("statements.created_at desc") } 
   scope :approved, -> { includes(:event_day)
                           .where(approved: true)
-                          .where('youtube_url is not null')
-                          .order('event_days.date desc') }
+                          .where("youtube_url != ''")
+                          .order("event_days.date desc") }
 
   accepts_nested_attributes_for :user, allow_destroy: false
 
   attr_reader :user_name, :event_name, :campaign_name, :candidate_name
   validate :validate_statement?
   acts_as_taggable
+  acts_as_taggable_on :issue_tag
   
   
   def user_name
@@ -65,13 +66,22 @@ class Statement < ActiveRecord::Base
     self.event_day ? self.event_day.date : self.created_at 
   end
   
-  def self.advance_search(candidate,location,date,event)
+  def self.advance_search(candidate_name,location,from,to,iss_tag)
     statements = Statement.approved
-    statements.select{|statement| (statement.candidate.present? ? (statement.candidate.person_name.to_s.downcase.include? candidate.to_s.downcase) : false ) or (statement.event_day.present? ?  ( ( statement.event_day.event.venue.present? ? (statement.event_day.event.venue.name.to_s.downcase.include? location.to_s.downcase) :  false) or statement.event_day.event.title.to_s.downcase.include? event.to_s.downcase or statement.event_day.date.strftime("%m/%d/%Y") == date) : false) }.uniq
+    statements.select{|statement| ((statement.candidate.present? && candidate_name.present?) ? (statement.candidate.person_name.to_s.downcase.include? candidate_name.to_s.downcase) : false )or (statement.event_day.present? ? ( (statement.event_day.event.venue.try(:name).to_s.downcase.include? location.to_s.downcase)) : false) or (statement.date_range(from,to,statement.date.strftime("%d/%m/%Y"))) or statement.issue_tag_list.include?(iss_tag)}.uniq
   end
 
   def thanks_email_to_user
     VideoMailer.video_submission(user).deliver if user.present? && user.email.present?
+  end
+
+  def self.tag_search(tag_params)
+    statements = Statement.approved
+    statements.select{|statement| statement.tag_list.map(&:downcase).any? {|word| word.include? tag_params.downcase }}
+  end
+
+  def date_range(from,to,date)
+    (from.empty? || to.empty?) ? false : (from.to_date..to.to_date).to_a.map{|d| d.strftime("%d/%m/%Y")}.include?(date)
   end
 
   private
@@ -87,4 +97,5 @@ class Statement < ActiveRecord::Base
         end
       end
     end
+    
 end

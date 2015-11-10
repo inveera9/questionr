@@ -1,5 +1,6 @@
 
 /*new css start*/
+.thans{padding: 0 !important;}
 #errorMessage{display:none; margin: 0; text-align: center;}
 .ansbgq{background:#ecf0f1; padding:10px;  border:solid 1px #ccc; margin-bottom: 25px;}
 .candbgq1 {
@@ -18,7 +19,7 @@
 .candbgq5{margin:0px; padding:0px;}
 .candbgq6{width:85%; margin-top:6px;}
 .candbgq7{width:65%; margin-top:6px;}
-.candbgq8{width:100%; margin-top:28px; margin-bottom:28px;}
+.candbgq8{width:100%; margin-top:28px; margin-bottom:28px !important;}
 .candbgq9{background:#fff; padding:10px 10px 0px 0px; overflow:hidden}
 .candbgq10{border:solid 2px #ccc !important; border-top:none !important; background:#fff !important;}
 .candbgq11{/*width:100%; overflow-x:scroll;*/}
@@ -29,42 +30,16 @@
 .token-input-list{
   width: 100% !important;
 }
-.token-input-dropdown{
-  width: 234px !important;
-}
+
 /*Statement browse hide*/
 
 /*end*/
 /*new css end*/
 .frm-padmar{margin:0px !important; padding:0px !important;}
 .martp{margin-top:25px;}
-.martp2{background:#ecf0f1!important; margin:0px !important; border:solid 1px #ccc; margin-bottom: 25px;}
+.martp2{background:#ecf0f1!important; padding-bottom: 30px !important; margin:0px !important; border:solid 1px #ccc; margin-bottom: 25px;}
 .frm-padmar2{padding:0px !important;}
 .rsl-txt{color:#134061; font-weight: bold; padding:0px !important;}
-ul.token-input-list li input{-moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: white;
-    border-color: #dce4ec -moz-use-text-color #dce4ec #dce4ec;
-    border-image: none;
-    border-width: 2px 4px 2px 2px;
-    padding: 11px 8px;
-}
-ul.token-input-list{background-color: #fff;
-    border: 2px solid #dce4ec;
-    clear: left;
-    cursor: text;
-    font-family: Verdana;
-    border-radius: 4px;
-    font-size: 12px;
-    height: auto !important;
-    list-style-type: none;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    width: 400px;
-    z-index: 999;}
 
 
 /*****************************************************/
@@ -83,3 +58,95 @@ div#video-answers iframe {
   width:100%!important;
   margin-left: 0!important;
 }
+.search-inactive{
+  display: none;
+}
+.search-active{
+  display: block;
+}
+.acor-tab-q{left: -89px;}
+
+.acor-tab-btn{
+  background-color: #ccc !important;
+  border-radius:1px !important; 
+  color:#000 !important;
+  border: solid 1px #d3d3d3 !important;
+}
+.acor-tab-btn2{
+  background-color: #ddd !important;
+  border-radius:1px !important; 
+  color:#000 !important;
+  border: solid 1px #d3d3d3 !important;
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) { 
+  .acor-tab-q{left: 0px;}
+  .martp{margin-top: 8px;}
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+  .acor-tab-q{left: 0px;}
+  .martp {
+    margin-top: 13px;
+  }
+}
+
+
+.form-group div ul {
+    margin: 0 !important;
+    border-radius: 4px  !important;
+    overflow: hidden !important;
+    padding: 5px !important;
+    position: relative !important;
+    width: 100% !important;
+    border: 2px solid #dce4ec !important;
+    cursor: text !important;
+    box-shadow: none !important;
+    background-image: inherit !important;
+}
+.search-error-msg{
+  color: #e74c3c;
+}
+
+.bl-hid{list-style: none; margin: 0px; padding: 0px;}
+.mpd{ margin: 0px 0px 0px 0px !important; padding: 0px !important;}
+.mpd-btm{line-height: 40px;}
+.lb-tx{font-size: 10px;}
+.issue-trans{
+display: block;
+height: 30px;
+width: 100%;
+line-height: 1.42857;
+color: #2C3E50;
+background-color: #FFF;
+background-image: none;
+border: 1px solid #DCE4EC;
+border-radius: 4px;
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;}
+.ulpx{
+    background: #e7ebec;
+    border: 1px solid #ccc;
+    margin: 8px !important;
+    padding: 5px !important;
+    list-style: none; 
+    margin: 0px; 
+    padding: 0px;
+  }
+.issue-trans[disabled]{
+  cursor: not-allowed;
+  background-color: #ecf0f1;
+  opacity: 1;
+}
+.candy1{margin:0px !important; padding:0px 10px 0px 0px !important;}
+
+.candidate-name{color:#f39c12;}
+.candbgq2-tb{margin:0px !important; padding:0px !important; }
+
+.candbgq11-tb table{width: 99.9%}
+.ryt-wrap-tx{word-wrap:break-word;}
+

@@ -43,7 +43,13 @@ class CandidatesController < ApplicationController
   # PATCH/PUT /candidates/1.json
   def update
     respond_to do |format|
-      if @candidate.update(candidate_params)
+      issues = {}
+      if params[:issues].present? 
+        params[:issues].each do |issue|
+          issues[issue] = params["scaling_#{issue}"]
+        end
+      end
+      if @candidate.update(candidate_params.merge!(scaling: issues))
         format.html { redirect_to @candidate, notice: 'Candidate was successfully updated.' }
         format.json { render :show, status: :ok, location: @candidate }
       else
@@ -78,6 +84,7 @@ class CandidatesController < ApplicationController
                                         :district,
                                         :party,
                                         :status,
+                                        :scaling,
                                         :description)
     end
 end

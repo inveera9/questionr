@@ -6,7 +6,6 @@
     <%= favicon_link_tag 'favicon.ico' %>
 	  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag 'application', 'token-input' %>
     
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -173,8 +172,7 @@
           </div>
           <div class="col-lg-3">
             <ul class="list-group">
-              <li class="list-group-item"><%= link_to 'Contact Us', 'mailto:questionr@nhrebellion.org?subject=A%20Question%20about%20Questionr.us' %></li>
-              <li class="list-group-item"><%= link_to 'Send Us a Tip', '#', 'data-toggle' => 'modal', 'data-target' => '#tip_modal'%></li>
+              <li class="list-group-item"><%= link_to 'Contact Us', 'mailto:xanni@opendemocracy.me.org?subject=A%20Question%20about%20Questionr.us' %></li>
               <li class="list-group-item"><%= link_to 'Privacy', 'http://www.nhrebellion.org/privacy_policy', target: '_blank' %></li>
               <li class="list-group-item"><%= link_to 'Media Inquiries', 'mailto:media@nhrebellion.org?subject=Questionr%20Media%20Inquiry' %></li>
               <li class="list-group-item"><%= link_to 'Attributions', '/attributions' %></li>

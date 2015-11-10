@@ -2,8 +2,8 @@ class Candidate < ActiveRecord::Base
   def self._sync_columns; []; end      
   def _sync_columns; Candidate._sync_columns; end  
   include DirtyColumns
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  #include Elasticsearch::Model
+  #include Elasticsearch::Model::Callbacks
 
   belongs_to :person
   has_many :statements
@@ -13,6 +13,8 @@ class Candidate < ActiveRecord::Base
   before_save { |c| c.person_id = nil if c.person_id < 1 }
 
   attr_reader :person_name
+  serialize :scaling, Hash
+
 
   def self.default_scope
     includes(:person)
@@ -58,5 +60,9 @@ class Candidate < ActiveRecord::Base
   def official_url
     c = self.campaign
     c ? c.official_url : ''
+  end
+
+  def self.approved_videos
+    self.includes(:statements).where("approved =?",true)
   end
 end
