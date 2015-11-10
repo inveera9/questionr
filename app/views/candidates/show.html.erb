@@ -27,32 +27,34 @@
             </h4>
           </div>
         </div>
-        <div class="col-lg-12 candbgq2">
+        <div class="col-lg-12 candbgq2-tb">
           <h3></h3>
-          <div class="candbgq11">
-            <table class="table table-striped table-responsive table-bordered">
-              <% if @candidate.scaling.present? %>
-                <tbody>
-                  <tr>
-                    <% @candidate.scaling.keys.each do |k| %>
-                      <% if @candidate.scaling[k].present? %>
-                        <td class="candbgq3"><%= k %></td>
+          <div class="table-responsive">
+            <div class="candbgq11-tb">
+              <table class="table table-striped table-responsive table-bordered">
+                <% if @candidate.scaling.present? %>
+                  <tbody>
+                    <tr>
+                      <% @candidate.scaling.keys.each do |issue| %>
+                        <% if @candidate.scaling[issue].present? %>
+                          <td class="candbgq3"><%= issue %></td>
+                        <% end %>
                       <% end %>
-                    <% end %>
-                  </tr>
-                  <tr>
-                    <% @candidate.scaling.select{|k,v| v}.values.each do |v| %>
-                      <% if v.present? %>
-                      <td align="center" valign="middle" class="candbgq10">
-                        <div class="ciclq_green"></div>
-                        <span> <%= v %></span>
-                      </td>
+                    </tr>
+                    <tr>
+                      <% @candidate.scaling.select{|issue, scale| scale}.values.each do |scale| %>
+                        <% if scale.present? %>
+                        <td align="center" valign="middle" class="candbgq10">
+                          <div class="ciclq_green"></div>
+                          <span> <%= scale %></span>
+                        </td>
+                        <% end %>
                       <% end %>
-                    <% end %>
-                  </tr>
-                </tbody>
-            <% end %>
-            </table>
+                    </tr>
+                  </tbody>
+              <% end %>
+              </table>
+            </div>
           </div>
           <p><%= raw(sanitize(@candidate.description, tags: SUPPORTED_HTML_TAGS)) %></p>
           <h3>See More Answers From <span class="candidate-name"><%= @candidate.person_name %></span></h3>

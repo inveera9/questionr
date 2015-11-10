@@ -8,7 +8,7 @@
       <li style="border: 0" class="list-group-item">No Recent Videos.</li>
     <% else %>
       <% videos.limit(3).each do |video| %>
-        <li style="border: 0" class="list-group-item">
+        <li style="border: 0" class="list-group-item ryt-wrap-tx">
           <%= video.date.strftime("%B %d, %Y") if video.date.present? %> : <%= link_to video.title, video.youtube_url, target: "_blank" %>
         </li>
       <% end %>
