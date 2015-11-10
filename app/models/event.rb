@@ -1,5 +1,4 @@
 require 'rss'
-
 class Event < ActiveRecord::Base  
   def self._sync_columns; ["title", "description", "official_url"]; end      
   def _sync_columns; Event._sync_columns; end  

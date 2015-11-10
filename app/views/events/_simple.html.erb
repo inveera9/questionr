@@ -1,0 +1,16 @@
+<%= month_calendar events: @event_days do |date, events| %>
+<%= date.day %>
+<% @event_days.each do |event_day| %>
+<% if date.strftime("%m/%d/%Y") == event_day.start_time.strftime("%m/%d/%Y")%>
+
+<div>
+	<button type="button" class="event-detail-id btn btn-xs btn-primary" data-id="<%= event_day.id %>">
+		<%= event_day.event.title %>
+	</button>
+
+
+</div>
+<% end %>
+<% end %>
+<% end %>
+

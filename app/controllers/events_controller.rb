@@ -1,20 +1,26 @@
 class EventsController < ApplicationController
   before_filter :require_admin, except: [:index, :show]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-    
+
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
+    @event_days = EventDay.all
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
-    @videos = @event.statements
-    @attendee = Attendee.new
-    @attendee.user = @current_user
-    @attendee.event_day = @event.event_days.first
+    if request.xhr?
+      @event = Event.find(params[:id])
+      render json: @event 
+    else
+      @videos = @event.statements
+      @attendee = Attendee.new
+      @attendee.user = @current_user
+      @attendee.event_day = @event.event_days.first
+    end
   end
 
   # GET /events/new
@@ -29,6 +35,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+
     @event = Event.new(event_params)
 
     respond_to do |format|
@@ -48,26 +55,26 @@ class EventsController < ApplicationController
     respond_to do |format|
       if params[:commit] == '+'
         process_method_and_redirect(format,
-                                    :candidates, 
-                                    :add_candidate, 
-                                    event_params[:candidates],
-                                    'added') if !event_params[:candidates].blank?
+          :candidates, 
+          :add_candidate, 
+          event_params[:candidates],
+          'added') if !event_params[:candidates].blank?
         process_method_and_redirect(format,
-                                    :speaker, 
-                                    :add_person, 
-                                    event_params[:people],
-                                    'added') if !event_params[:people].blank?
+          :speaker, 
+          :add_person, 
+          event_params[:people],
+          'added') if !event_params[:people].blank?
       elsif params[:commit] == 'X'
         process_method_and_redirect(format,
-                                    :candidates, 
-                                    :remove_candidate, 
-                                    params[:candidate_id_to_remove],
-                                    'removed') if !params[:candidate_id_to_remove].blank?
+          :candidates, 
+          :remove_candidate, 
+          params[:candidate_id_to_remove],
+          'removed') if !params[:candidate_id_to_remove].blank?
         process_method_and_redirect(format,
-                                    :speaker, 
-                                    :remove_person, 
-                                    params[:person_id_to_remove],
-                                    'removed') if !params[:person_id_to_remove].blank?
+          :speaker, 
+          :remove_person, 
+          params[:person_id_to_remove],
+          'removed') if !params[:person_id_to_remove].blank?
       else      
         if @event.update(event_params)
           format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -108,4 +115,4 @@ class EventsController < ApplicationController
       format.html { redirect_to @event, notice: "#{symbol.to_s.titlecase} #{what_happened}." }
       format.json { render :show, status: :ok, location: @event }
     end
-end
+  end

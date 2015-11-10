@@ -1,22 +1,46 @@
 <% if notice %>
-	<div class="alert alert-dismissible alert-success col-lg-12">
-		<button type="button" class="close" data-dismiss="alert">×</button>
-		<%= notice %>
-	</div>
+  <div class="alert alert-dismissible alert-success col-lg-12">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= notice %>
+  </div>
 <% end %>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%= render 'simple' %>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+</div>
+
 <div class="page-header">
-	<h2>Events</h2>
+  <h2>Events</h2>
 </div>
 
 <%= render 'table', events: Event.upcoming %>
-
 <% if @current_user.admin? %>
   <div class="page-header">
-  	<h2>Past Events</h2>
+    <h2>Past Events</h2>
   </div>
-
   <%= render 'table', events: Event.past %>
 <% end %>
-
 <% if @current_user.admin? %><%= link_to 'New Event', new_event_path, class: "btn btn-primary" %><% end %>
+
+<%= render 'modalevent' %>
+<script>
+  $(document).on("click", ".event-detail-id", function () {
+    var id = $(this).data('id');
+    $.ajax({
+      url: '/events/'+id,
+      type: 'GET',
+      success: function(data){
+        console.log(data);
+        $('.event-name').text(data.title);
+        $('.event-name').text(data.description);
+     }
+
+    });
+    $('#even_modal').modal('show');
+  });
+</script>

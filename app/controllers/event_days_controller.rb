@@ -5,7 +5,7 @@ class EventDaysController < ApplicationController
   # GET /event_days
   # GET /event_days.json
   def index
-    @event_days = EventDay.all
+       @event_days = EventDay.all
   end
 
   # GET /event_days/1
@@ -25,6 +25,7 @@ class EventDaysController < ApplicationController
   # POST /event_days
   # POST /event_days.json
   def create
+    
     @event_day = EventDay.new(format_dates_and_times(event_day_params))
 
     respond_to do |format|
