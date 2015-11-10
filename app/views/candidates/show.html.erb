@@ -55,7 +55,7 @@
             </table>
           </div>
           <p><%= raw(sanitize(@candidate.description, tags: SUPPORTED_HTML_TAGS)) %></p>
-          <h3>See More Answers From <%= @candidate.person_name %></h3>
+          <h3>See More Answers From <span class="candidate-name"><%= @candidate.person_name %></span></h3>
         </div>
         <div class="col-lg-2 candbgq5">Search By: </div>
         <%= form_tag("/search_candidate", :method=>"get") do %>
