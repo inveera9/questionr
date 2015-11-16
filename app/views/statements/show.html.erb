@@ -1,3 +1,4 @@
+
 <% if notice %>
 	<div class="alert alert-dismissible alert-success col-lg-12">
 		<button type="button" class="close" data-dismiss="alert">×</button>
@@ -68,7 +69,9 @@
     <strong>Approved:</strong>
     <%= @statement.approved %>
   </p>
-    
+
+   <%= social_share_button_tag(@statement.youtube_url, :url => @statement.youtube_url) if @statement.youtube_url.present? %>
+
   <ul class="pager">
   	<li class="next">
       <%= link_to 'Edit →', edit_statement_path(@statement), class: "edit-statement", statement_id: @statement.id %>

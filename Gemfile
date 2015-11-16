@@ -70,6 +70,7 @@ gem "twitter-bootstrap-rails"
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'acts-as-taggable-on'
+gem 'social-share-button'
 
 
 gem 'speech2text'
