@@ -70,7 +70,7 @@
     <%= @statement.approved %>
   </p>
 
-   <%= social_share_button_tag(@statement.youtube_url, :url => @statement.youtube_url) %>
+   <%= social_share_button_tag(@statement.youtube_url, :url => @statement.youtube_url) if @statement.youtube_url.present? %>
 
   <ul class="pager">
   	<li class="next">
