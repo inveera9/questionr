@@ -27,8 +27,11 @@ class AttendeesController < ApplicationController
   def create
     @attendee = Attendee.new(attendee_params)
     @current_user.update(attendee_params['user_attributes'])
+    username = attendee_params['user_attributes'][:first_name] + " " +attendee_params['user_attributes'][:last_name]
+    username = @current_user.present? ? (@current_user.first_name + " " + @current_user.last_name) : username
     respond_to do |format|
       if @attendee.save!
+        VideoMailer.thanks_for_signup(username,attendee_params['user_attributes'][:email]).deliver if attendee_params['user_attributes'][:email].present?
         format.html { redirect_to @attendee.event_day.event, notice: 'Thanks for letting us know!' }
         format.json { render :show, status: :created, location: @attendee }
       else
