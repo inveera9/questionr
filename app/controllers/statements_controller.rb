@@ -8,7 +8,7 @@ class StatementsController < ApplicationController
     if params[:tag].present? 
       @statements = Statement.tagged_with(params[:tag])
     else 
-      @statements = Statement.all
+      @statements = Statement.unscoped.order("created_at desc")
     end
   end
 
