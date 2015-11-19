@@ -15,6 +15,8 @@ class Statement < ActiveRecord::Base
   def _sync_columns; Statement._sync_columns; end  
   include DirtyColumns
 
+  after_create :thanks_email_to_user
+  
   belongs_to :user
   belongs_to :event_day
   belongs_to :campaign
@@ -69,6 +71,10 @@ class Statement < ActiveRecord::Base
     statements.select{|statement| ((statement.candidate.present? && candidate_name.present?) ? (statement.candidate.person_name.to_s.downcase.include? candidate_name.to_s.downcase) : false )or (statement.event_day.present? ? ( (statement.event_day.event.venue.try(:name).to_s.downcase.include? location.to_s.downcase)) : false) or (statement.date_range(from,to,statement.date.strftime("%d/%m/%Y"))) or statement.issue_tag_list.include?(iss_tag)}.uniq
   end
 
+  def thanks_email_to_user
+    VideoMailer.video_submission(user).deliver if user.present? && user.email.present?
+  end
+
   def self.tag_search(tag_params)
     statements = Statement.approved
     statements.select{|statement| statement.tag_list.map(&:downcase).any? {|word| word.include? tag_params.downcase }}
@@ -77,7 +83,7 @@ class Statement < ActiveRecord::Base
   def date_range(from,to,date)
     (from.empty? || to.empty?) ? false : (from.to_date..to.to_date).to_a.map{|d| d.strftime("%d/%m/%Y")}.include?(date)
   end
-  
+
   private
     def validate_statement?
       if self.approved
