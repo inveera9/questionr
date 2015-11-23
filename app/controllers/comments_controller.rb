@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :require_admin, only: [:index, :update]
+  before_filter :require_admin, only: [:index, :update, :destroy]
   skip_before_filter :verify_authenticity_token  
   
   def index
@@ -27,6 +27,12 @@ class CommentsController < ApplicationController
     if comment.save
       redirect_to comments_path
     end
+  end
+
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to comments_path  
   end
 
   private
