@@ -82,6 +82,31 @@
       <div class="col-lg-4">
         <%= render 'events', :panel_title => 'Upcoming Events', :events => @candidate.upcoming_events %>
         <%= render 'most_recent_videos', :videos => @videos %>
+        <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Discussion Board</h3>
+        </div>
+        <div class="panel-body" id="comment-block" candidate-id="<%=@candidate.id%>">
+          <ul class="list-group">
+            <% @candidate.comments.approved.each do |comment| %>
+              <li style="border: 0" class="list-group-item" >
+                <span class="comment-title"><%= comment.title %></span>:
+                <%= comment.message %>
+              </li>
+            <% end %>
+          </ul>
+          <p class="thanks-for-comment"></p>
+          <span>Write your comment.</span>
+          <%= form_for @candidate.comments.new, method: "POST"  do |f| %>
+            <%= f.text_field :title, class: "form-control margin_bottom_10", placeholder: 'Enter title' %>
+            <span class="search-error-msg comment_title" style="display:none;">Please enter title.</span>
+            <%= f.text_area :message, class: "form-control margin_bottom_10", placeholder: 'Enter message' %>
+            <span class="search-error-msg comment_message" style="display:none;">Please enter message.</span>
+            <div class="clearfix"></div>
+            <input type="button" id="create_comment" value="Submit" name="commit" class="btn btn-info">
+          <% end %>
+        </div>
+      </div>
       </div>
     </div>
   </div>
@@ -90,6 +115,39 @@
 <script type="text/javascript">
   $('#date').datetimepicker({
     format: 'DD/MM/YYYY'
+  });
+
+  $(document).ready(function(){
+    var candidate_id = $("#comment-block").attr("candidate-id")
+    $("#new_comment").find("input[type=text], textarea").val("");
+    $("#create_comment").on("click", function(e){
+      var title = $("#comment_title");
+      var message =  $("#comment_message");
+      var title_error = $(".comment_title");
+      var message_error = $(".comment_message");
+      if(title.val().length <= 0){
+        title_error.show();
+        message_error.hide();
+        e.preventDefault();
+      }else if (message.val().length <= 0){
+        title_error.hide();
+        message_error.show();
+        e.preventDefault();
+      }
+      else{
+        $.ajax({
+          url: "/comments",
+          type: 'POST',
+          data: {comment:{title: title.val(), message: message.val()} , candidate_id: candidate_id},
+          success: function(response){
+            $(".thanks-for-comment").text("Thank you! for your comment.")
+            $("#new_comment").find("input[type=text], textarea").val("");
+            title_error.hide();
+            message_error.hide();
+          }
+        });
+      }
+    });
   });
 </script>
 

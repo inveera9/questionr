@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h2>Comments</h2>
+</div>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Candidate</th>
+      <th>Title</th>
+      <th>Message</th>
+      <th colspan="3">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.candidate.person_name %></td>
+        <td><%= comment.title %></td>
+        <td><%= comment.message %></td>
+        <td>
+          <%= link_to "#{ comment.status ? 'Unapprove' : 'Approve'}", comment_path(comment), method: 'PUT' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

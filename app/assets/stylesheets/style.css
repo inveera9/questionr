@@ -148,3 +148,9 @@ transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;}
 
 .candbgq11-tb table{width: 99.9%}
 .ryt-wrap-tx{word-wrap:break-word;}
+.comment-title{
+  color: #f39c12;
+}
+.margin_bottom_10{
+  margin-bottom: 10px;
+}

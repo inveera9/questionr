@@ -9,6 +9,7 @@ class Candidate < ActiveRecord::Base
   has_many :statements
   has_one :campaign
   has_and_belongs_to_many :events
+  has_many :comments
 
   before_save { |c| c.person_id = nil if c.person_id < 1 }
 

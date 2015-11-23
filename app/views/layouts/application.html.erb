@@ -135,6 +135,8 @@
                 <li class="divider"></li>
 		            <li><%=link_to 'Users', :users%></li>
 								<li class="divider"></li>
+                <li><%= link_to "Comments", comments_path %></li>
+                <li class="divider"></li>
 		            <li><%=link_to 'Background Jobs', '/resque_web', target: '_blank'%></li>
                 <li><%=link_to 'Logout', logout_path, method: 'delete' %></li>								
 		          </ul>

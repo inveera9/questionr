@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'tags/:tag', to: 'statements#index', as: :tag
   resources :statements
   resources :people
+  resources :comments, only: [:index, :create, :update]
   resources :candidates
   resources :elections
   resources :campaigns
