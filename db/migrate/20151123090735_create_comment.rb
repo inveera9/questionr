@@ -5,6 +5,7 @@ class CreateComment < ActiveRecord::Migration
       t.boolean :status
       t.string :title
       t.text :message
+      t.timestamps null: false
     end
   end
 end
