@@ -42,12 +42,15 @@
                       <% end %>
                     </tr>
                     <tr>
-                      <% @candidate.scaling.select{|issue, scale| scale}.values.each do |scale| %>
-                        <% if scale.present? %>
-                        <td align="center" valign="middle" class="candbgq10">
-                          <div class="ciclq_green"></div>
-                          <span> <%= scale %></span>
-                        </td>
+                      <% @candidate.scaling.each do |scale| %>
+                        <% if scale[1].present? %>
+                          <td align="center" valign="middle" class="candbgq10">
+                            <div class="">
+                              <% topic = scale[0].gsub(" ","-").downcase %>
+                              <% scale_rank = scale[1].gsub(" ", "-").downcase %>
+                              <%= image_tag "icons/#{topic}-#{scale_rank}.png", { width: '100px' } %>
+                            </div>
+                          </td>
                         <% end %>
                       <% end %>
                     </tr>
@@ -108,6 +111,11 @@
         </div>
       </div>
       </div>
+      <ul class="pager col-lg-12">
+        <% if @current_user.admin? %>
+          <li class="next"><%= link_to "Edit →", edit_candidate_path(@candidate) %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 <% end %>
