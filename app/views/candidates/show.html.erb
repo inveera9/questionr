@@ -45,15 +45,15 @@
                       <% @candidate.scaling.each do |scale| %>
                         <% if scale[1].present? %>
                           <td align="center" valign="middle" class="candbgq10">
-                            <% if scale[0].include? "Lobbyists" %>
-                              <div class="ciclq_green"></div>
-                            <% else %>
+                            <%# if scale[0].include? "Revolving Door" %>
+                              <!-- <div class="ciclq_green"></div> -->
+                            <%# else %>
                             <div class="">
                               <% topic = scale[0].gsub(" ","-").downcase %>
                               <% scale_rank = scale[1].gsub(" ", "-").downcase %>
                               <%= image_tag "icons/#{topic}-#{scale_rank}.png", { width: '100px' } %>
                             </div>
-                            <% end %>
+                            <%# end %>
                           </td>
                         <% end %>
                       <% end %>
