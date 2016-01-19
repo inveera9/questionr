@@ -26,7 +26,13 @@ class CandidatesController < ApplicationController
   # POST /candidates
   # POST /candidates.json
   def create
-    @candidate = Candidate.new(candidate_params)
+    issues = {}
+    if params[:issues].present? 
+      params[:issues].each do |issue|
+        issues[issue] = params["scaling_#{issue}"]
+      end
+    end
+    @candidate = Candidate.new(candidate_params.merge!(scaling: issues))
 
     respond_to do |format|
       if @candidate.save
